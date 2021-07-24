@@ -57,6 +57,7 @@ Linux 核心技术与应用：
    使用的快捷键：
        Ctrl+L(clear)清屏
        Ctrl+D关闭
+       Ctrl+C关闭正在运行的程序
        Shift+PgUp 类似鼠标滚轮
        Shift+PgDn 向下滚屏
        Ctrl+A 光标跳到头部
@@ -65,3 +66,27 @@ Linux 核心技术与应用：
        Ctrl+K 删除右侧字符
        Ctrl+W 删除左侧单词
        Ctrl+Y 粘贴删除的字符
+
+6. Linux文件：普通文件,特殊文件  => Linux一切皆文件
+    文本文件：txt,doc,odt，声音文件：.mav,.mp3,.ogg
+
+   根目录:/  => 子目录: /usr/opt
+   Windows(C盘): Program Files,Windows,Documents
+   Linux: 不需要背，自己会了解
+       /bin： 存放二进制可执行文件(ls、cat、mkdir 等)，常用命令一般都在这里,binary
+       /boot： 存放用于系统引导时使用的各种文件；
+       /dev： 用于存放设备文件
+       /etc： 存放系统管理和配置文件，对全体用户生效, 历史遗留问题
+       /home： 存放所有用户文件的根目录，是用户主目录的基点，比如用户 user 的主目录就是/home/user
+       /mnt： 系统管理员安装临时文件系统的安装点，系统提供这个目录是让用户临时挂载其他的文件系统
+       /media: 媒体，可移动外设
+       /lib ： 存放着和系统运行相关的库文件
+       /opt： 额外安装的可选应用程序包所放置的位置。一般情况下，我们可以把 tomcat 等都安装到这里
+       /root： 超级用户（系统管理员）的主目录（特权阶级^o^）
+       /sbin: 存放二进制可执行文件，只有 root 才能访问。这里存放的是系统管理员使用的系统级别的管理命令和程序。如 ifconfig 等
+       /srv
+       /tmp: 用于存放各种临时文件，是公用的临时文件存储点
+       /usr: Unix Software Resource , 操作系统软件资源 => /usr/bin
+       /var: 动态的，可变的，程序的数据
+   pwd：显示当前目录 => Print Working Directory
+   which: 获取命令的可执行文件位置  which pwd
