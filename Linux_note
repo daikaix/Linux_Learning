@@ -47,3 +47,21 @@ Linux 核心技术与应用：
    command -p 10
    command --parameter=10
 
+5. 找到一个命令：Tab键补全命令
+   如果很多，显示More，空格下一页，回车键下一行，Q键退出列表
+   显示命令的历史：键盘上键，输入的历史命令从后往前
+                键盘下键，输入的历史命令从前往后
+                Ctrl+R, 查找使用过的命令
+                history, 输入过的命令  => 运行!50,!51，运行对应的第50条命令
+
+   使用的快捷键：
+       Ctrl+L(clear)清屏
+       Ctrl+D关闭
+       Shift+PgUp 类似鼠标滚轮
+       Shift+PgDn 向下滚屏
+       Ctrl+A 光标跳到头部
+       Ctrl+E 光标跳到尾部
+       Ctrl+U 删除左侧字符
+       Ctrl+K 删除右侧字符
+       Ctrl+W 删除左侧单词
+       Ctrl+Y 粘贴删除的字符
