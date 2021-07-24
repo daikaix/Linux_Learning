@@ -1,0 +1,29 @@
+#### Linux 相关
+
+Linux 官网：https://www.linux.org
+
+Linux 内核的官网：https://www.kernel.org
+
+Linux 中国：https://linux.cn
+
+Linux 文件系统结构图：https://linuxtoy.org/archives/linux-file-structure.html
+
+#### CentOS 相关
+
+***
+
+CentOS（本课程使用的 Linux 发行版）官网：https://www.centos.org
+
+CentOS 7 的下载页面（本课程目前基于 CentOS 7，等以后 CentOS 8 稳定了会更新到 CentOS 8。可以用 aliyun 或 163 等国内镜像地址来下载 CentOS 7 的最新版本进行本课程的学习。目前 CentOS 官网的下载页面 https://www.centos.org/download 点进去是直达 CentOS 8 的下载。第二章有一个专门的视频解释 CentOS 8 和做一些说明）：http://isoredirect.centos.org/centos/7/isos/x86_64
+
+阿里云镜像站的 CentOS 目录： https://mirrors.aliyun.com/centos/
+下载 CentOS 7（以 CentOS 7.7.1908 版的 DVD 版本为例）：https://mirrors.aliyun.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-DVD-1908.iso
+
+网易 163 镜像站的 CentOS 目录： http://mirrors.163.com/centos
+下载 CentOS 7（以 CentOS 7.7.1908 版的 DVD 版本为例）：http://mirrors.163.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-DVD-1908.iso
+
+CentOS 中文站：https://www.centoschina.cn
+
+Linux 公社的 CentOS 专题页面：https://www.linuxidc.com/topicnews.aspx?tid=14
+
+CentOS 官方的源列表（包含各个国家和地区的源。比如国内有 阿里、网易、华为、清华大学，等等的镜像网站）：https://www.centos.org/download/mirrors

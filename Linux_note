@@ -1,1 +1,25 @@
 Linux 核心技术与应用：
+==1. 初识Linux==
+
+主板 => bootloader =>  OS  =>  程序
+    1. 主板（motherboard),显示开机界面 => 启动界面，操作系统Windows，程序启动(浏览器，游戏）
+       操作系统时大管家，OS Operating System，如Linux,Windows,macOS
+
+    2. 电脑拥有多个OS,bootloader boot启动 loader加载器
+       bootloader 严重依赖于硬件实现，特别是嵌入式领域，GRUB => 不选择，默认系统
+
+    3. 不同操作系统下的程序：不能通用
+       Linux免费，不断更新  => 微软：MS-DOS  其他：Unix(1969)
+
+内核（文件管理，虚拟内存） -> 基本程序 文本编辑器,shell  -> Linux开源自由，发行版
+    1. GNU, is Not Unix => 类Unix操作系统
+    2. Linus Torvalds  => Linux (Linus is Not Unix) Tux企业
+    3. GNU 和 Linus 进行了合并  =》 GNU/Linux
+    4. 发行版本
+                Red Hat   ->   Fedora,RHEL
+  Linux ->      Deepin         CentOS
+                Debian
+命令行界面，图形界面：基于一个X程序，桌面管理器
+主流的桌面管理器：
+    Gnome,KDE,XFCE
+
