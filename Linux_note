@@ -23,3 +23,27 @@ Linux 核心技术与应用：
 主流的桌面管理器：
     Gnome,KDE,XFCE
 
+==2. 基础命令==
+1. CentOS桌面：分为真正的终端，应用终端
+   登录tty: Ctrl+Alt+F1回图形界面，+F2-F6进入tty1-5
+           输入用户名：root,oscar 密码：xxx
+   应用终端: 桌面应用打开
+
+2. [daikaixuan@daikaixuandeMacBook-Pro ~ ]$
+   名字@域 所在目录 所具有的权限
+   whoami@hostname pwd
+   $普通用户，#root用户
+   切换为root : sudo su
+
+3. date时间： Sat Jul 24 21:15:20 CST 2021
+   ls(list)列出
+
+4. 命令参数：
+   command parameter
+   短参数 -p,-T,-s => -pTs
+   长参数 --parameter => --xx1 --xx2
+   ls -a la --all
+   参数赋值：
+   command -p 10
+   command --parameter=10
+

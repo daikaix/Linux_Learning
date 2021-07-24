@@ -1,0 +1,6 @@
+1. 目录中文件类型，文本文件，图片，音频，视频，JPEG格式的图片
+   ls -l | grep jpg | wc -l
+2. 把统计的数目存储到一个文本文件中
+   ls -l | grep jpg | wc -l > jpeg_nb.txt
+3. email传递给一个朋友
+   xxx | mail -s "jpeg number"oscar@imooc.com
