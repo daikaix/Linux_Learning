@@ -119,3 +119,33 @@ Linux 核心技术与应用：
        du -h: 以Ko,Mo,Go显示文件大小
        du -a: 显示文件和目录的大小
        du -s: 直接获取总大小
+
+8. 浏览和创建文件
+   进入/var/log日志文件
+   cat: concatenate，把文件连接起来一次打印出来，适合处理小的文件
+       cat -n xx0.log xx1.log 显示行号,合并多个内容
+   less: 一页一页的显示内容，[more命令比较弱]
+       less wifo.log
+       空格键：下一页
+       回车：下一行
+       d:前进半页
+       b:后退一页
+       y:回退一行
+       q:退出命令
+       =:显示信息 wifi.log lines 2-15/1322 byte 2702/194579 1%  (press RETURN)
+       h:帮助文档
+
+       /:搜索 n下一个符合的项目
+
+   head: 显示开头的10行 -n xx行
+        head -5 wifi.log
+   tail: 显示结尾的10行
+        tail -f:可以对某个文件进行动态监控，例如 tomcat 的日志文件
+                会随着程序的运行，日志会变化，可以使用 tail -f catalina-2016-11-11.log 监控文件的变化 。
+        tail -f -s 4 xxx: 每隔4s检查一次
+
+   touch: 创建一个空白文件
+        touch new_file new_file2
+   mkdir: 创建一个新的目录
+        mkdir new_folder new_folder2
+        mkdir -p one/two/three 递归创建目录
