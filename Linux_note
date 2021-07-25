@@ -149,3 +149,24 @@ Linux 核心技术与应用：
    mkdir: 创建一个新的目录
         mkdir new_folder new_folder2
         mkdir -p one/two/three 递归创建目录
+
+9. 文件复制和移动
+   cp: cp -r new_file /bin 复制+黏贴
+       拷贝目录，-r 代表递归拷贝
+       更改复制后的文件名: cp new_file one /bin
+       使用通配符: cp ha* folder 以ha开头的拷贝进folder目录中
+
+   mv: 移动目录和文件 剪切+黏贴
+       移动到one目录下: mv new_folder one
+       通配符: mv *.txt one
+       对文件或目录重新命名: mv new_file renamed_file
+
+   rm: 删除文件和目录
+       rm file1 file2 file3
+       确认是否删除: rm -i xx
+       强制删除: rm -f xx
+       递归删除: rm -r new folder
+       rm -rf xx
+
+10.
+
