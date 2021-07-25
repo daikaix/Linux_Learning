@@ -226,4 +226,23 @@ Linux 核心技术与应用：
         chgrp: 改变文件的群组
                chgrp thomas file.txt
 
-    修改文件的权限：
+
+12. 文件的权限
+    drwxr-xr-x. -> .是安全标签
+    d:directory 目录
+    l:link 链接
+    r:read 可以读
+    w:write 可以写
+    x:execute 可以运行 (目录需要可运行权限)
+    [d,l,-] [rwx] [rwx] [rwx] . -> 文件类型，所有者权限，群组权限，其他用户
+
+    chmod: 修改文件的访问权限，只要是所有者即可修改权限
+        数字分配权限: r 4 w 2 x 1 => chmod 755 renamed_file
+        字母访问权限: u user,g group,o other,a all, +,-,=
+                    chmod u+rx file, chmod g+r o-r file, chmod go-r file
+                    chmod u=rwx,g=r,o=- file
+
+        递归修改： chmod -R 700 /home/oscar
+
+
+
