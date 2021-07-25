@@ -185,3 +185,45 @@ Linux 核心技术与应用：
     创建软连接：目录，文件都可以, file2 指向 file1, 类似于快捷方式
         ln -s file1 file2
         lrwxr-xr-x  1 daikaixuan  staff  5  7 25 17:02 file3 -> file1
+
+11. 用户与权限以及群组管理
+    Linux权限：
+        超级用户：root
+        群组：
+            家人：Oscar, Joseph,Angel
+            朋友：Paul,John
+
+    获取root权限：
+        sudo命令：以root身份运行命令 ( 用户是有限权限 ) Substitute User DO
+                     密码为当前用户的密码
+        sudo su: 切换到root用户  => exit退出
+        su -: 密码为root用户密码
+
+    权限管理：
+        创建用户在家目录： useradd thomas  => ls /home
+        指定密码： password thomas => 123456
+        删除用户：userdel thomas [ 如果用户已登录，会有进程在使用 ]
+            userdel -r --remove thomas => 家目录也会一并删除
+
+    群组管理的命令：
+        每个用户都属于一个特定的群组，如果不设置群组，那么会默认使用与用户名一致的群组
+
+        创建群组：groupadd friends
+        修改用户账户：usermod -g friends thomas
+            -l 用户重命名，home中目录名不改变，需要手动修改
+            -g 修改群组
+            -G 添加到多个群组 usermod -G happy,funny thomas
+            -a 追加，不改变原先的群组，必须结合-G
+        获知用户属于的群组： groups thomas
+
+        删除群组：groupdel happy
+
+    修改文件的所有者和群组：
+        chown: change owner 改变文件的所有者
+               chown thomas file.txt
+               -r, -R 递归设置子目录和子文件  chown -R oscar:oscar /home/thomas
+
+        chgrp: 改变文件的群组
+               chgrp thomas file.txt
+
+    修改文件的权限：
