@@ -105,6 +105,7 @@ Linux 核心技术与应用：
            文件权限,.不考虑 链接数目 所用者 群组 文件大小  时间    目录名字
        -h 适合人类阅读
        -t 按时间排序
+       -i 列出inode编号
 
    cd usr： 切换到该目录下 usr 目录
        cd ..（或cd../）： 切换到上一层目录
@@ -167,6 +168,20 @@ Linux 核心技术与应用：
        强制删除: rm -f xx
        递归删除: rm -r new folder
        rm -rf xx
+       普通用户：sudo rm -rf xx
 
-10.
+10. 文件的链接
+    ln: 创建链接 (link)
+    链接类型： 物理链接，符号链接
 
+    文件存储：
+        1.文件分为三部分，文件名，权限，文件内容
+        2.文件名的列表和文件内容是分开存放，便于Linux管理
+        3.文件内容对应一个标识号码inode,文件名对应文件内容的inode码
+
+    创建硬链接：指向同一个inode，修改一个另一个对应更改
+        ln file1 file2  => ls -i 对应的inode值相同
+
+    创建软连接：目录，文件都可以, file2 指向 file1, 类似于快捷方式
+        ln -s file1 file2
+        lrwxr-xr-x  1 daikaixuan  staff  5  7 25 17:02 file3 -> file1
