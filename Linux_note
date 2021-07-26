@@ -244,5 +244,44 @@ Linux 核心技术与应用：
 
         递归修改： chmod -R 700 /home/oscar
 
+13. Nano 初学者的文本编辑器(并非文本处理器)
+    nano -> Nano is another editer
+
+    1.直接输入nano, 下面是Nano的快捷键
+        ^G      (F1)            Display this help text
+        ^X      (F2)            Close the current file buffer / Exit from nano
+        ^O      (F3)            Write the current file to disk
+        ^J      (F4)            Justify the current paragraph
+
+        ^R      (F5)            Insert another file into the current one
+        ^W      (F6)            Search for a string or a regular expression
+        ^Y      (F7)            Move to the previous screen
+        ^V      (F8)            Move to the next screen
+
+        ^K      (F9)            Cut the current line and store it in the cutbuffer
+        esc+X 帮助模式的激活和关闭
+    2. 打开文件： nano file.txt
+       激活鼠标： nano -m
+       自动缩进： nano -i
+       只能Home: nano -A  下一行根据缩进
+       nano -miA file.txt
+
+    3. 配置Nano .nanorc (配置文件一般以.开头，rc结尾)rc -> runcommand,脚本文件的后缀
+       用户在家目录创建.nanorc文件，配置语句一般以set和unset开头
+           set mouse
+           set autoindent
+           set smarthome
+
+       全局的.nanorc, 公共调用的, /etc/nanorc, #是注释掉的，不生效
+
+    4. 终端的配置文件， .bashrc ( Bash程序， shell脚本语言 )
+       全局的bashrc, /etc/bashrc
+           看到PS1开头的行，设置命令行提示符的样式，${USER}表示用户名
+
+    5. .profile文件, 费图形界面的终端配置文件
+       会调用.bashrc
+
+    6. 立即生效，source .bashrc
+
 
 
