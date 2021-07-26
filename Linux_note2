@@ -1,0 +1,29 @@
+1. 软件安装 [ Windows中，.exe文件，安装到ProgramFiles文件夹中 ]
+    1. CentOS中类似的程序被称为软件包,Package， 软件中所有文件的压缩包，包含所有的指令。
+        .rpm文件， Red Hat Package Manager, 红帽软件包管理器
+        Debian一族， 以.deb 为后缀
+
+    2. 不同之处：软件包还处理依赖关系，不需要搜索来进行下载，几乎所有的rpm软件包被存放在相同位置，软件仓库repository
+        2.1 依赖， Eclipse -> Java环境
+        2.2 repository, 软件开源的，集中存放到一个地方
+            [ ftp.linux.com, mirrors.ftp.com, mirros.aliyun.com ]
+
+    3. 切换软件仓库
+        仓库列表记录在 /etc/yum.repos.d/CentOS-Base.repo  [ base,updates 等等 ]
+        CentOS 官方的源列表（包含各个国家和地区的源。比如国内有 阿里、网易、华为、清华大学，等等的镜像网站）：https://www.centos.org/download/mirrors
+        1. 备份原文件 mv 重命名
+        2. 获取阿里文件 wget -O /etc/xxx  http://mirrors
+        3. yum makecache
+
+    4. 终端管理软件包
+        yum命令
+        yum update/upgrade 更新软件包
+        yum search
+        yum install xx
+        rpm软件包：官网下载rpm包
+        rpm -i *.rpm
+        rpm -e 包名
+        yum localinstall *.rpm
+        yum remove 包名
+
+
