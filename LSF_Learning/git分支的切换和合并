@@ -1,0 +1,26 @@
+1. 首先创建新分支并提交
+    $ git checkout -b iss53
+    Switched to a new branch "iss53"
+
+    git commit -a -m 'added a new footer [issue 53]'
+
+2. 切换回主分支，在创建一个新分支
+    $ git checkout master
+    $ git checkout -b hotfix
+    $ git commit -a -m 'fixed the broken email address'
+
+3. 切换回主分支，直接合并新分支
+    $ git checkout master
+    $ git merge hotfix
+    Updating f42c576..3a0874c
+    Fast-forward
+     index.html | 2 ++
+     1 file changed, 2 insertions(+)
+
+4. 切换回主分支，以三角形合并新分支，并删除分支
+    $ git checkout master
+    Switched to branch 'master'
+    $ git merge iss53
+    Merge made by the 'recursive' strategy.
+
+    $ git branch -d iss53
