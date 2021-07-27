@@ -26,4 +26,5 @@
         yum localinstall *.rpm
         yum remove 包名
 
-
+2. RTFM 阅读手册
+    
