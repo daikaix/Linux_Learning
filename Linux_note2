@@ -169,7 +169,24 @@
         File Descriptor, 表述指向文件的引用的抽象概念
         非负整数，索引值，指向操作系统内核为每一个进程维护的该进程打开文件的记录表
 
+6. 输入重定向以及管道
+    <: 从文件读取输入
+    <<: 从键盘输入
 
+        cat < notes.csv
+        sort -n << END  终端进入键盘模式,输入123，12，1，345，END,输出排序结果
+
+        wc -m << END > numbers_sorted.txt 2>&1
+
+    管道：|
+    作用是建立命令管道，将命令1的输出作为命令2的输入
+    按学生姓名排序：
+        cut -d , -f 1 notes.csv | sort > sorted_name.txt
+    du命令改造：
+        du | sort -nr | head
+    包含log的文件名
+        sudo grep log -Ir /var/log | cut -d : -f 1 | sort | uniq
+        -I排除二进制
 
 
 
