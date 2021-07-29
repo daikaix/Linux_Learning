@@ -84,3 +84,48 @@
         {} 表示对所有查找到的文件进行替换  \表示结束
         -ok也可以，但是会询问是否执行
 
+4. 数据处理
+    grep: 筛选数据 Globally search a Regular Expression and Print
+        grep [-abcdDEFGHhIiJLlmnOopqRSsUVvwxZ] [-A num] [-B num] [-C[num]] [-e pattern] [-f file] [--binary-files=value] [--color[=when]]
+                  [--colour[=when]] [--context[=num]] [--label] [--line-buffered] [--null] [pattern] [file ...]
+        基础搜索：grep path /etc/profile [ pattern,file ]
+            pattern: "Hello World" 有空格
+        忽略大小写：grep -i path /etc/profile
+        显示行号：grep -n path /etc/profile
+        只显示文本不在的行：grep -v path /etc/profile [颠倒]
+        递归查找： grep -r "Hello World" folder/
+
+        使用正则表达式： . ^ $ [] ? * + | ()
+            -E参数：grep -E ^Path /etc/profile
+                   grep -E [Pp0-4a-zA-Z]ath /etc/profile
+
+    sort: 文件排序
+        sort new_file 不区分大小写
+        -o 参数，将排序后的结果写入新文件, sort -o new_file1 new_file
+        -r 倒序排列
+        -R 随机排序
+        -n 对数字排序 [ 默认是按照字符串来进行排序 ]
+
+    wc: 文件的统计 统计行数，字节数，字符数
+        wc name.txt
+        8       8      35 number.txt
+        行数    单词数  字节数（包含换行符）
+
+        只统计行数：wc -l name.txt
+        只统计单词数：wc -w name.txt
+        只统计字节数：wc -c name.txt
+        只统计字符数：wc -m name.txt
+
+    uniq: 删除文件中的重复内容,将连续的重复行变成一行[不连续的不行]
+        uniq repeat.txt unique.txt
+
+        -c 参数：统计重复的行数 uniq -c repeat.txt
+        -d ：只显示重复的行
+
+    cut:
+        根据字符数剪切 cut -c 2-4 name.txt  [ 每行只保留第二个到第四个字符的命令 ]
+
+
+
+
+
