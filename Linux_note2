@@ -27,4 +27,31 @@
         yum remove 包名
 
 2. RTFM 阅读手册
+    RTFM：read the fuck manual
+    man命令：显示使用手册
+    sudo yum install -y man-pages 下载man手册
+    sudo mandb 更新man手册
+
+    man+数字+命令/函数
+    man 3 rand
+    手册移动：Home,End  /搜索  PageUp,PageDown
+        Name,
+        Synopsis:用法，
+        粗体要原封不动的输入，下面划线的需要进行替换
+        ...表示可以前面划线部分可以输入多个
+        [-hvc] 表示可选的
+        [a|b] ab不可同时选
+
+        Description描述：
+        -pv描述SYNOPSIS中的选项参数的含义
+
+    apropos: 根据关键字查找命令
+        apropos sound
+
+    -h --help参数：获取帮助文档
+        易于阅读
+
+    whatis man: man手册的简易版本
+
+    
     
