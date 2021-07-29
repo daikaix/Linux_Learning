@@ -37,13 +37,18 @@
     手册移动：Home,End  /搜索  PageUp,PageDown
         Name,
         Synopsis:用法，
-        粗体要原封不动的输入，下面划线的需要进行替换
-        ...表示可以前面划线部分可以输入多个
-        [-hvc] 表示可选的
-        [a|b] ab不可同时选
+            粗体要原封不动的输入，下面划线的需要进行替换
+            ...表示可以前面划线部分可以输入多个
+            [-hvc] 表示可选的
+            [a|b] ab不可同时选
+            [expression] 即为后面的Primaries的内容
+            一定要按照顺序书写命令
 
         Description描述：
-        -pv描述SYNOPSIS中的选项参数的含义
+            -pv描述SYNOPSIS中的选项参数的含义
+
+        Primaries:
+            可选表达式，如 -name "xxx"
 
     apropos: 根据关键字查找命令
         apropos sound
@@ -53,5 +58,29 @@
 
     whatis man: man手册的简易版本
 
-    
-    
+3. 查找文件 [ man find ]
+
+    locate renamed_file
+        文件的数据库中进行查找，新创建的文件没有保存在数据库中，所以不能找到最新的文件
+        sudo updatedb  更新文件数据库
+
+    find 查找当前的实际文件
+        不会在文件数据库中查找，遍历实际硬盘。
+        find [-H | -L | -P] [-EXdsx] [-f path] path ... [expression]
+        find [-H | -L | -P] [-EXdsx] -f path [path ...] [expression]
+
+    根据文件名查找：find -name "new_file"
+    指定查找范围： find /var/temp -name "new_file"
+    根据文件大小查找：find /var -size +10M
+    根据最近时间查找：find /var -atime -7
+    只查找目录或文件：find /var -type d[目录] f[文件]
+                   find . -name "new_file" -type d
+
+    对查找的结果进行操作：
+        打印结果： find . -name "*.txt" -printf "%p - %u /n"
+        %p 是文件名，%u 是用户名
+    后接一个命令：
+        find one -name "*.txt" -exec chmod 600 {} \;
+        {} 表示对所有查找到的文件进行替换  \表示结束
+        -ok也可以，但是会询问是否执行
+
