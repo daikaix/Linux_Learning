@@ -1,0 +1,47 @@
+1. 任务的定时和延时执行
+    date: 定制date输出，修改系统时间
+        date "+%H:%M:%S"
+        date "+现在是Y年"
+
+        sudo date 07300918
+
+    at命令： 延时执行一个程序
+        at 22:10 -> 会进入输入命令模式，输入Ctrl+D可以退出
+        job 1 at Fri Jul 30 21:15:00 2021 [ 任务的编号 1 ]
+
+        在指定时刻执行： at 22:10 tomorrow
+                      at 22:10 12/10/21  [ 月，日，年 ]
+
+        在指定间隔后执行程序：at now +10 minute
+                          at now +7 weeks
+
+    atq: 列出正等待执行的at任务
+    atrm: 删除正等待执行的at任务 atrm 2
+
+
+crontab:
+    sleep: 休息一会
+        touch file.txt; sleep 10; rm file.txt
+        sleep 15m, sleep 15h
+
+    &&: 前面的命令成功才执行后面的命令
+    ||: 前面的命令失败才执行后面的命令
+    ; : 一定都执行
+
+    配置nano作为默认的文本编辑器：echo "export EDITOR=nano" >> ~/.bashrc
+                             source ~/.bashrc
+    crontab: cron实际执行定时程序
+        -l:显示crontab文件
+        -e:修改crontab文件
+            m h dom mon dow command
+            m:分钟  h:小时
+            dom: day of month mon:month
+            dow: day of week [0-6]
+            每天的22点10分执行：10 22 * * * touch ~/file.txt
+            每个月的1-15： 10 22 1-15 * * command
+            每两个小时的整点：0 */2 * * * command
+        -r:删除crontab文件
+
+
+
+
