@@ -189,7 +189,7 @@
         -I排除二进制
 
 
-监控系统活动，查看进程
+7. 监控系统活动，查看进程
     Linux是多任务多用的操作系统，管理多个同时运行的程序，多任务多用户的隐患
     w 命令：
         有哪些用户登录，在干什么
@@ -228,3 +228,33 @@
 
         树形结构显示线程：pstree ps -axjf
 
+8. 进程操作和系统重启
+    top: 实时获取进程列表
+        top - 15:20:12 up  6:38,  1 user,  load average: 0.43, 0.51, 0.43Tasks: 258 total,   1 running, 257 sleeping,   0 stopped,   0 zombie
+        %Cpu(s):  1.4 us,  1.4 sy,  0.0 ni, 97.0 id,  0.0 wa,  0.2 hi,  0.0 si,  0.0 st
+        MiB Mem :  16027.1 total,   9487.5 free,   2346.3 used,   4193.3 buff/cache
+        MiB Swap:   4052.0 total,   4052.0 free,      0.0 used.  12908.6 avail Mem
+        top只显示一定数量的线程，占满整个终端
+
+        h帮助文档
+        q退出
+        f 添加或删除某些列
+        u 只显示用户对应的进程
+        k 结束某个进程
+        s 改变页面的刷新时间间隔
+
+    glances:
+        yum install epel* -y  安装epel release
+        yum install python-pip python-devel -y  安装Python pip
+        yum install glances -y
+    htop:
+        yum install htop -y
+
+    停止进程：
+        Ctrl+C, kill pid ... [ 终端中复制，黏贴：Ctrl+shift+C ]
+        kill -9 pid 强制结束进程
+        killall 结束所有进程： killall find
+    关闭和重启系统：
+        halt:关闭系统
+        rebot: 系统重启  => 都调用了 shutdown
+        poweroff 关机
