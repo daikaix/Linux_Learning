@@ -189,4 +189,42 @@
         -I排除二进制
 
 
+监控系统活动，查看进程
+    Linux是多任务多用的操作系统，管理多个同时运行的程序，多任务多用户的隐患
+    w 命令：
+        有哪些用户登录，在干什么
+         7:37  up 15 days, 23:20, 2 users, load averages: 2.80 1.96 1.83
+        USER     TTY      FROM              LOGIN@  IDLE WHAT
+        daikaixuan console  -                14 721  15days -
+        daikaixuan s000     -                四16       - w
+        时间 系统运行时间 load average:1min的平均负载，5min的平均负载，15min的平均负载（CPU运行的比率）
+        登录用户的列表：USER用户名， TTY终端名称 :0表示本地，图形界面终端  pts/0 伪终端从属
+        FROM: IP地址   LOGIN@：用户的登陆时间  IDLE:不活跃的时间  JCPU:使用的CPU处理时间
+        PCPU:执行当前进程消耗的时间  WHAT,当下用户正在使用的程序
+    date：当前时间
+    uptime：显示运行时间
+    tload: 绘制随时间变化的负载曲线图
+
+    ps：列出运行的进程 【 chrome, Apache 】
+    ps：Process Status, 进程状态,是进程的快照，是不变的
+          PID TTY           TIME CMD
+        57101 ttys000    0:06.71 -zsh
+        57794 ttys001    0:00.26 /bin/zsh --login -i
+        PID进程号,TTY是终端对应的，运行时间，cmd程序
+
+        列出所有进程： ps -ef | less
+        UID   PID  PPID   C STIME   TTY           TIME CMD
+        0     1     0   0 14 721  ??        18:55.60 /sbin/launchd
+        0    56     1   0 14 721  ??         1:20.71 /usr/sbin/syslogd
+        0    57     1   0 14 721  ??         0:43.09 /usr/libexec/UserEventAgent (System)
+        PPID 父进程
+
+        以乔木状列出进程：ps -efH
+        列出用户的进程： ps -u oscar
+        通过CPU和内存来过滤进程：
+            ps -aux --sort -pcpu| less 根据CPU使用率降序排列
+            ps -aux --sort -pmem| less 根据内存使用率降序排列
+            ps -aux --sort -pcpu,+pmem| head 根据内存和CPU使用率降序排列
+
+        树形结构显示线程：pstree ps -axjf
 
