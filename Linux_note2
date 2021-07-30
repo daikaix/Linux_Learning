@@ -258,3 +258,25 @@
         halt:关闭系统
         rebot: 系统重启  => 都调用了 shutdown
         poweroff 关机
+
+9. 前后台进程灵活切换：
+    进程的状态：R运行，S中断，D不可中断，Z僵死，T停止
+        S sleeping 不代表本进程已经停止了
+
+    &符号：后台运行该命令,前台还是会不断的输出结果
+        cp file.txt file-copy.txt &
+        sudo find / -name "*log" > output_find 2>&1 &
+    缺点：一旦用户登出，进程就会自动结束
+
+    nohup命令: 使进程与终端分离，不受HUP信号影响
+    当用户注销或者网络断开时，终端会收到HUP信号，从而关闭所有子进程
+        nohop cp file file_copy & 默认追加到nohop.out 文件中
+
+    Ctrl+Z：转到后台并暂停运行
+    bg：使进程转到后台，使暂停的进程重新运行
+        两个命令结合使用，将正在运行的程序转移到后台中
+        bg %1 => 作用于编号为1的进程，终端输出的进程的编号
+
+    jobs命令：显示后台进程的状态
+
+    fg命令：使后台进程转到前台， fg foreground
