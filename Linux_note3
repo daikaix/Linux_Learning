@@ -43,5 +43,48 @@ crontab:
         -r:删除crontab文件
 
 
+2. Linux的压缩和解压软件
+    打包: 将多个文件变成一个总的文件，archive
+    压缩: 将大文件变成一个小文件
+
+    使用tar将磁盘文件归档，使用gzip或bzip2压缩归档
+    sudo chmod -R dai:dai sorting/
+
+    tar:
+        -cvf 创建一个tar归档
+        c create,v verbose显示细节,f file 归档为文件
+        tar -cvf MyCode.tar MyCode/ file2.txt
+
+        -tf 显示归档的内容，但是不解开归档
+
+        -rvf 追加文件到归档中
+
+        -xvf x extract 将归档解开
+
+    gzip,bzip2
+        压缩后的文件：.tar.gz  .tar.bz2
+            gzip MyCode.tar
+        解压：
+            gunzip MyCode.tar.gz
+            bunzip2 MyCode.tar.bz2
+
+    同时完成：
+        tar -zcvf MyCode.tar MyCode/   归档和压缩，z参数表示使用gzip
+        tar -jcvf  使用bzip2压缩归档
+        tar -zxvf 解压gzip文件
+        tar -jxvf 解压bzip2文件
+
+    zcat: 显示gzip压缩的文件
+    bzcat: 显示bzip2压缩的文件
+
+    对于zip和rar的文件：
+        zip, zip -r xx.zip xx/  递归压缩子目录中的文件
+        unzip, unzip xx.zip
+
+        rar 比较麻烦，需要自己用二进制安装
+
+
+
+
 
 
