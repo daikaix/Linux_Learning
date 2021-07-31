@@ -83,6 +83,33 @@ crontab:
 
         rar 比较麻烦，需要自己用二进制安装
 
+3. 编译安装软件 yum无法下载软件时
+    下载源代码，解压压缩包，配置，编译，安装
+
+    1. 首先尝试获取.rpm安装包，或者.deb安装包
+       alien : 将rpm安装包和deb安装包相互转换 (需要安装)
+       sudo aline -r xxx.deb
+
+    2. sudo rpm -i xxx.rpm rpm安装软件，不能保证顺利安装
+
+    3. 获取源代码，自行编译[ 将源代码转换成可执行的文件 ],借助README文件
+       例如htop软件，官网下载source, 后缀为tar.gz
+       tar -zxvf xxx.tar.gz
+       进入文件夹：
+           运行./config,获取所有依赖 -> missing xxx
+           yum install xxx
+           编译源码：make Makefile
+           安装：sudo make install
+       进入/usr/local/bin 获取对应的命令
+
+    获取源代码的另一种方式：rar的安装
+        wget [option] [website]  (tget获取磁力链接下载)
+        tar -zxvf
+        sudo make
+        rar a sort.rar sorting/  添加
+        unrar e sort.rar
+
+
 
 
 
