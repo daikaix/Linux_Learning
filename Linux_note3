@@ -109,6 +109,61 @@ crontab:
         rar a sort.rar sorting/  添加
         unrar e sort.rar
 
+4. 安装CentOS服务器以及基本配置
+    安装：
+        下载Minimal版本: 7.9.2009/isos/x86_64/Minimal_2009
+        通过VirtualBox创建一个虚拟机，并设置存储中的盘片 为CentOS Minimal, 然后启动即可
+
+        窗口大小调整：Virtual Screen 1放大  300%
+        选择语言，建立磁盘分区，begin install
+
+        设置root密码：admin, 不创建自己的用户
+
+    网络配置：
+        nano /etc/sysconfig/network-scripts/ifconfig-enp0s3
+        service network restart
+
+
+    虚拟机的四种网络连接方式：
+        NAT,网络地址转换  -> Guest访问的任何数据都是由主机提供的，Guest在主机上是不存在的
+        Bridged Adapter,桥接模式  -> 通过主机网卡，架设了一条桥，获得了自己的ip地址,DHCP分配，完全是一台真实机器
+        Internal 内部网络模式
+        Host-only Adapter 主机模式
+
+    查看IP信息：
+        ifconfig: 比较老，net-tools的命令
+        ip addr: 比较新，iproute2的命令
+            lo是本地回环的接口，enp0s3是10.0.2.15 内网地址
+            poweroff -> 设置，网络，[ 为了获取一个局域网的ip，让其他的终端能够访问 ]，选择桥接网卡
+            获取对应的ip地址 192.168.1.13/24
+
+    配置yum源：
+        cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+        curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+        yum clean all # 清除系统所有的yum缓存
+        yum makecache # 生成yum缓存
+
+5. 获取远程连接
+    协议：HTTPS,FTP,电子邮件协议等
+    Telnet: 明文传输
+    ssh : security shell
+        不同的加密算法：
+              对称加密，Symmetric-key Encryption,用一个秘钥加密,解密，传输的是message经过加密的密文
+                      需要事先传递秘钥
+              非对称加密，Asymmetric-key Encryption,用一个秘钥加密，另一个秘钥解密
+                        Public key加密，Private key解密，RSA算法
+        SSH原理：
+            首先使用非对称加密安全传输对称加密的秘钥，之后使用对称加密来传输数据
+
+    情况：
+        租用了一台服务器，自动配置好了SSH,而自己的则没有租用服务器
+        安装openssh,
+            客户端只用来远程连接到别的机器，yum install openssh-clients
+            让机器开放SSH服务，安装openssh-server,自动开启sshd守护进程
+                sudo systemctl start sshd, stop sshd, restart sshd, status sshd
+                设置为开机自启，sudo systemctl enable sshd
+
+        Minium已经默认安装了，ps -ef | grep sshd, systemctl list-unit-files | grep sshd
 
 
 

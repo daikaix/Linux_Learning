@@ -1,4 +1,4 @@
-#### Linux 相关
+== 1. Linux 相关 ==
 
 Linux 官网：https://www.linux.org
 
@@ -8,9 +8,7 @@ Linux 中国：https://linux.cn
 
 Linux 文件系统结构图: https://linuxtoy.org/archives/linux-file-structure.html
 
-#### CentOS 相关
-
-***
+== 2. CentOS 相关 ==
 
 CentOS（本课程使用的 Linux 发行版）官网：https://www.centos.org
 
@@ -27,3 +25,80 @@ CentOS 中文站：https://www.centoschina.cn
 Linux 公社的 CentOS 专题页面：https://www.linuxidc.com/topicnews.aspx?tid=14
 
 CentOS 官方的源列表（包含各个国家和地区的源。比如国内有 阿里、网易、华为、清华大学，等等的镜像网站）：https://www.centos.org/download/mirrors
+
+#### 虚拟机
+
+VirtualBox（本课程主要在 VirtualBox 虚拟机中进行学习，你也可以用 VMWare 这样的虚拟机软件。如果你想用真机学习，比如自己用双系统安装 CentOS 也是可以的，不过并不是特别推荐用真机，因为真机安装 Linux 耗时费力，而且容易出问题，对初学者很不友好。虚拟机更灵活更方便，卸载删除非常便捷，也不怕弄坏自己的原生操作系统）虚拟机软件的官网：https://www.virtualbox.org
+
+VirtualBox 的下载页面：https://www.virtualbox.org/wiki/Downloads
+
+VMWare 虚拟机软件（收费的，要使用请购买正版软件）的官网：https://www.vmware.com
+
+VMWare 虚拟机的免费版 VMWare Player ：https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html
+
+#### 远程连接和 SSH
+
+SSH 的官网：https://www.ssh.com
+
+OpenSSH 的官网： https://www.openssh.com
+
+Putty（一款免费的 Telnet、rlogin 和 SSH 客户端）的官网：https://www.putty.org
+
+
+文本编辑器
+
+Nano 文本编辑器的官网：https://www.nano-editor.org
+
+Vim 文本编辑器的官网：https://www.vim.org
+
+Vim 的在线文档：http://vimdoc.sourceforge.net/htmldoc
+
+Vim 的官方插件：https://www.vim.org/scripts/script_search_results.php
+
+Github 上一个比较优秀的 Vim 配置：https://github.com/amix/vimrc
+
+Github 对 Vim 配置的搜索：https://github.com/search?q=vimrc
+
+Emacs 文本编辑器的官网：https://www.gnu.org/software/emacs
+
+#### 版本控制
+
+***
+
+Git 版本控制软件的官网：https://git-scm.com
+
+Git 的使用手册：https://git-scm.com/docs
+
+Pro Git（一本关于 Git 和版本控制的官方推荐的免费电子书，非常经典）：https://git-scm.com/book/en/v2
+
+Github 的官网：https://github.com
+
+Gitlab 的官网：https://gitlab.com
+
+#### 其他著名的 Linux 发行版
+
+***
+
+RHEL（红帽 Linux 企业版）的官网：https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux
+
+Debian 的官网：https://www.debian.org
+
+与 CentOS 齐名，非常优秀的 Ubuntu（衍生自 Debian。桌面 Desktop 版非常出色，服务器 Server 版也很不错，还有物联网 IOT 版本，云计算 Cloud 版本）的官网：https://www.ubuntu.com
+
+Fedora 的官网：https://getfedora.org
+
+openSUSE 的官网：https://www.opensuse.org
+
+Gentoo 的官网：https://www.gentoo.org
+
+Deepin（深度）的官网：https://www.deepin.org
+
+#### 其他软件
+
+***
+
+压缩解压软件 rar 和 unrar 的 5.7.0 版本链接：https://www.rarlab.com/rar/rarlinux-x64-5.7.0.tar.gz
+
+动态监控软件 htop 的官网：https://hisham.hm/htop
+
+动态监控软件 glances 的官网：https://nicolargo.github.io/glances
