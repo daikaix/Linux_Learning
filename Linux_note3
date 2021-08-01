@@ -165,8 +165,54 @@ crontab:
 
         Minium已经默认安装了，ps -ef | grep sshd, systemctl list-unit-files | grep sshd
 
+6. ssh远程连接
+    ssh root@192.168.1.14
 
+    使用config配置ssh: 方便管理多个SSH连接
+        SSH客户端：/etc/ssh/ssh_config, ~/.shh/config
+        SSH服务器端：/etc/ssh/sshd_config
 
+        man sshd_config 查看帮助文档
 
+        客户端参数：
+            Host:别名
+            HostName:远程主机名
+            Port:远程主机端口
+            User:用户名
+        服务端参数：
+            Port:sshd服务器口号，默认为22
+            PermitRootLogin: 是否允许以root用户登录
+            PasswordAuthentication: 是否允许密码验证登录
+            PubkeyAuthentication: 是否允许公钥登录
+            PermitEmptyAuthentication: 是否允许空密码登录
 
+    cd .ssh  -> ssh localhost -> known_host
+        局部配置文件： .ssh/config, 权限修改为600
+        nano config ->
+            Host Dai
+                HostName 192.168.1.14
+                Port 22
+                User root
+        chmod 600 config
+        ssh Dai
+
+    SSH免密登录：
+        基于秘钥的验证，客户机生成秘钥对，把公钥上传到服务器登录
+        生成秘钥对：ssh-keygen,生成转换秘钥
+            默认使用RSA算法，ssh-keygen -t rsa, -t表示指定生成的算法
+                指定生成位置，默认在/home/Daikaixuan/.shh/id_rsa中
+                如果之前生成过，需要Overwrite
+                Enter passphrase: 秘钥加密的密码，空即可
+            公钥被生成在id_rsa.pub文件之中，key的指纹是：SHA256:7/CoLXtmUuXDHGCZP8lJzDD3vR0o/76QYp1e47eXZi0 daikaixuan@daikaixuandeMBP.bbrouter
+            私钥被生成在id_rsa
+
+        将公钥传输到服务器，ssh-copy-id
+            ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.169.1.14
+            一个秘钥被添加到了服务器
+
+        此时已经可以免密码登录了
+            原理：公钥被追加到~/.ssh/authorized_keys
+
+        如何禁用：
+            ssh -o PreferredAu...=password -0 PubKey...=no
 
