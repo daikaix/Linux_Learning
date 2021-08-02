@@ -214,5 +214,5 @@ crontab:
             原理：公钥被追加到~/.ssh/authorized_keys
 
         如何禁用：
-            ssh -o PreferredAu...=password -0 PubKey...=no
+            ssh -o PreferredAu...=password -o PubKey...=no
 
