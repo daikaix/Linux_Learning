@@ -200,3 +200,45 @@
             不会同步删除文件：
                 --delete 同步删除
                 rsync -arv --delete  Images/  dai@192.168.1.16:backups/
+
+== 6. IP地址，分析与统计网络
+    IP: IPv4 小数点分隔  Internet Protocol version 4
+        IPv6 ::分隔，8组4位的16进制
+    主机名 HostName: www.baidu.com
+        获取对应IP地址，host www.baidu.com
+
+    自定义解析：
+        自定义主机名和IP地址的关系
+        打开 /etc/hosts, 添加自己的解析对
+        如果解析域名的DNS服务挂了，本地可以通过IP地址访问，那么可以自己添加解析
+            13.229.188.59 github.com
+            192.168.1.15 father-laptop  -> ssh dai@father-laptop
+
+    whois:了解有关域名的信息
+        whois baidu.com  -> 可以看到创建时间，域名状态等
+
+    ifconfig: 列出网络接口 [ Network Interface Configuration ]
+        属于net-tools包下
+        网络接口：
+            旧版：eth0, 表示有线网卡，eth ethernet 以太网
+                 lo 表示本地回环，虚拟网卡
+                 wlan0 无限局域网
+            新版：enp0s3, en表示以太网卡，p0s3表示PCI接口的物理位置为(0,3)
+                 横坐标代表bus,纵坐标代表slot
+        RX,TX: 发送的包，接收的包的数据
+
+        接口的激活和关闭：
+            ifconfig enp0s3 down 关闭该网卡
+            ifconfig enp0s3 up   开启该网卡
+
+    netstat: 网络统计  network statistics
+        netstat -i : 列出网络接口的详细信息
+            RX-OK, receive 字节数
+            TX-OK, 包数
+            MTU, Maximum Transmission Unit 最大传输单元
+        netstat -uta : 列出所有开启的连接
+            u,UDP,t,TCP,a,ALL
+            状态： TIME_WAIT,CLOSE_WAIT, ESTABLISH,CLOSING,LISTEN
+        netstat -n 显示端口
+                -lt 列出状态时Listen的连接
+                -s  总结性的统计信息
