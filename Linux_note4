@@ -124,5 +124,39 @@
     [ 大佬的配置：https://github.com/amix/vimrc ]
     [ https://blog.csdn.net/liangsir_l/article/details/50608350 ]
 
-== 4.
+== 4. 版本控制软件 git
+    分类：集中式版本控制软件，分布式版本控制软件，每个开发者都保存了项目文件的所有历史版本
+         CVS,SVN         Mercurial,Bazaar,Git
+    安装配置git:
+        yum -y install git
+
+    激活颜色选项：
+        git config --global color.ui auto
+                            color.diff auto
+                            color.status auto
+                            color.branch auto
+        git config --global color.ui false 关闭
+
+    配置修改用户名，邮箱：
+        git config --global user.name "daikaix"
+        git config --global user.email "996327890@qq.com"
+        git config --global --replace-all user.name "daikaix"
+
+    列出配置项：
+        git config --list
+        less ~/.gitconfig
+
+    设置Git命令别名：
+        git config --global alias.co checkout  [ git co = git checkout ]
+
+    配置ssh免密登录：
+        ssh-keygen -t rsa -C "996327890@qq.com" -> .ssh/id_rsa_github
+        把id_rsa_github.pub 放到 github中
+        ssh-add ~/.ssh/id_rsa_github
+
+    man git-config
+
+    通过github+pages 搭建自己的个人博客
+        [ https://linghucong.js.org/2016/04/15/2016-04-15-hexo-github-pages-blog/ ]
+        [ https://blog.csdn.net/dengzhang6507/article/details/102122260 ]
 
