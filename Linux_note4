@@ -160,3 +160,43 @@
         [ https://linghucong.js.org/2016/04/15/2016-04-15-hexo-github-pages-blog/ ]
         [ https://blog.csdn.net/dengzhang6507/article/details/102122260 ]
 
+== 5. 网络与安全, 传输命令
+    wget 文件下载
+        获取下载链接，右键获取
+        下载的稳定性很强
+        wget -c xxx 从中断出继续下载
+
+    scp: 网间拷贝
+        Secure Copy, 基于SSH原理来运作
+        scp source_file destination_file  [ user@ip:file_name ]
+            scp name.txt root@192.168.1.16:/root   拷贝到其他电脑
+            scp root@192.168.1.16:/root/file.txt name.txt  从其他电脑获取需要的拷贝数据
+
+        指定端口号：
+            scp -P 7821 xxx
+
+    ftp,sftp 传输文件
+        从公共的ftp服务器下载文件，浏览器自行完成，匿名的
+        从私有的ftp服务器下载文件，需要验证登录
+
+        服务器连接：ftp -p ftp.fr.debian.org， -p 表示被动的
+
+    ftp文件传输：
+        put放入文件
+        get下载文件
+
+        !ls 在本地电脑运行命令
+        Ctrl+D 退出
+
+    sftp 安全加密ftp:
+        sftp user@ip, 通信更加安全
+        sftp -oPort 3592
+
+    rsync: 同步备份, 远程同步文件, 类似scp命令
+        增量备份[ 在一次全备份或上一次增量备份后，每次的备份只需备份与前一次相比增加或者被修改的文件 ]
+
+        参数：
+            -arv: a表示归档，r表示递归，v表示verbose,显示细节
+            不会同步删除文件：
+                --delete 同步删除
+                rsync -arv --delete  Images/  dai@192.168.1.16:backups/
