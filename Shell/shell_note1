@@ -1,0 +1,26 @@
+Shell 基础
+    shell是外壳，是一种批处理的脚本，shell的不同对应不同的终端命令行环境
+    种类：Bash,Ksh,Csh,Zsh
+    更换shell: chsh -> /bin/bash , /bin/zsh
+
+    Shell脚本
+        格式:
+            vim test.sh, 开头需要#！/bin/bash, 是SheBang，脚本会被指定的脚本执行
+            ls,cd基础命令可以执行
+            #为注释
+            添加权限chmod 755 test.sh，./test.sh 运行脚本
+        变量:
+            message='Hello World' 变量赋值，=左右不能有空格
+            echo "The message is $message" 获取变量值，$xx, echo显示数据
+                echo -e 显示换行符，加入\n
+                ''忽略所有特殊字符，只有""才能不忽略$，`符号
+
+            message=`pwd`, pwd被执行了，作为命令
+
+            read name 读取变量，输入被存储在变量中
+                同时为多个变量赋值 read name1 name2
+                显示字符： read -p 'Please input your name:' name
+                限制输入字符数：read -n 5 name  达到5个之后立即显示
+                限制输入时间：read -t 5 name 达到5s后自动提交
+                输入密码：read -s password
+
