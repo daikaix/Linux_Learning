@@ -124,5 +124,26 @@
     [ 大佬的配置：https://github.com/amix/vimrc ]
     [ https://blog.csdn.net/liangsir_l/article/details/50608350 ]
 
-== 4.
+== 4.vim配置
+    set nocompatible
+    set number
+    filetype on
+    set history=1000
+    color evening
+    syntax on
+    set autoindent
+    set smartindent
+    set tabstop=4
+    set shiftwidth=4
+    set showmatch
+    set guioptions-=T
+    set vb t_vb=
+    set ruler
+    set nohls
+    set incsearch
+    if has("vms")
+    set nobackup
+    else
+    set backup
+    endif
 
