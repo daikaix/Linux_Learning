@@ -97,3 +97,19 @@ Shell 基础
             将命令结果作为循环条件，for file in $listfile, listfile=`ls`
             生成编号 for i in `seq 1 2 10`
 
+        函数
+            print_something(){
+                echo xx， 传递参数 echo Hello $1
+                return 1 返回值
+            }
+            print_something Luke
+            echo $?
+
+            获取输入的行数：
+                cat $1 , wc -l, line_num=$(lines_in_file $1)
+
+            本地变量：默认为global，local定义本地变量，防止被改变数值
+            重载命令, ls() { command ls -lh }
+
+    以调试模式运行： bash -x test.sh, 会显示出执行的命令
+    直接执行：将bash放置在/usr/bin之中，就可以直接运行
