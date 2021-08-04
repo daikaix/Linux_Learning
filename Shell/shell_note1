@@ -45,3 +45,55 @@ Shell 基础
                 echo ${array[*]}
                 ${array[2]} 访问需要加上{}
 
+        条件语句
+            if语句：
+                if [ xx ]
+                then ,
+                elif ,
+                else
+                fi
+            []两边必须空一格，$xx = $xx
+            多个条件，[] && [] || []
+            否定 [ ! -e $file ]
+                相等判断： $1 = $2, $1!= $2,
+                是否为空： -z $1，不为空 -n $1
+                大小判断：-eq,-ne, -lt lower than, -le lower or equal,
+                        -gt larger than, -ge
+                类型判断： -e $file 是否存在，-d,-f,-L 目录，文件，链接，
+                权限判断：-r,w,x 可读可写可执行
+                时间判断：-nt newer than,-ot older than 更新的文件，更旧的文件
+
+            case语句：
+                case $1 in
+                    "Mattew")
+                        echo "xxx!" ;;
+                    "dog" | "cat")
+                        echo "xx";;
+                    *)
+                        echo "XXX" ;;
+                esac
+
+            或匹配，需要使用|
+
+
+
+        循环语句
+            while循环：
+                while [ -z $response ] || []
+                do
+                    xxx
+                done
+            until循环：
+                until [ ]
+                do
+                    xxx
+                done
+            for循环：
+                for animal in 'xx' 'xx' 'xx'
+                do
+                    xxx
+                done
+
+            将命令结果作为循环条件，for file in $listfile, listfile=`ls`
+            生成编号 for i in `seq 1 2 10`
+
