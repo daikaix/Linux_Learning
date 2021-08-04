@@ -24,3 +24,24 @@ Shell 基础
                 限制输入时间：read -t 5 name 达到5s后自动提交
                 输入密码：read -s password
 
+            数学运算
+                let "a=5", let "b=a+a" echo "c=$c"  使用let命令进行计算
+                符号：+，**，*
+
+            环境变量
+                全局变量，被任何Shell程序获取，env获取环境变量
+                $SHELL，PWD当前目录，
+                PATH: 一系列路径的集合，存在于PATH的路径的可执行程序可以直接执行
+                .bashrc -> export EDITOR=nano
+            参数变量
+                ./variable.sh 参数1 参数2 参数3
+                $# 参数数目 $0 运行脚本名称 $1 第一个参数 $2 第二个参数
+                    echo "You have executed $0, there are $# parameters"
+                    echo "The firt Parameter is $1"
+                shift 使得参数指针向下移动一位
+            数组
+                array=('value0','value1','value2')
+                array[5]='value5'
+                echo ${array[*]}
+                ${array[2]} 访问需要加上{}
+
