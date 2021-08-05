@@ -51,7 +51,20 @@
         function rep_hadoop_mapreduce_first
         function rep_hadoop_mapreduce_all
 
-    实现：
+5. 命令替换
+    `command`
+    $(command)
 
-    主流程的设计：
+    获取所有的用户并输出：cat /etc/passwd | cut -d ":" -f 1
+
+    根据系统时间获取今年或者明年：data +%Y  +必须和%Y在一起
+
+    根据系统获取今年还剩几个星期，过了几个星期：
+        $(($(date +%j) / 7))  获取当前在365天中的时间
+
+    根据系统获取是否有nginx进程，没有就拉起来：
+        ps -ef | grep nginx | grep -v grep | wc -l
+
+    注意：$(()) 用来进行运算，可以使用num++,num--操作
+
 
