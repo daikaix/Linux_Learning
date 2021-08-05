@@ -36,4 +36,22 @@
         注意：expr 数目减一
              ${} 数目一致
 
+4. 字符处理实例脚本
+    变量string="BigData process framework is Hadoop,Hadoop is an open source project"
+    执行脚本打印该变量，给出以下选项：
+    1. 打印String长度
+    2. 删除所有的Hadoop
+    3. 替换第一个Hadoop为Mapreduce
+    4. 替换所有的Hadoop为Mapreduce
+
+    需求进行功能划分：
+        function print_tips
+        function len_of_string
+        function del_hadoop
+        function rep_hadoop_mapreduce_first
+        function rep_hadoop_mapreduce_all
+
+    实现：
+
+    主流程的设计：
 
