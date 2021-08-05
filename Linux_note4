@@ -259,3 +259,33 @@
 
         查看安全上下文：
             ls -Zd /home/web
+
+==8. DHCP动态分配IP，静态分配IP
+    编辑config文件：
+        vim /etc/sysconfig/network-scripts/ifcfg-enp0s3
+        配置信息：
+            BOOTPROTO: dhcp 根据网络自动分配，static 静态方式
+            TYPE: 设备类型 Ethernet
+            NAME 网卡名称
+            ONBOOT: yes 网卡自动启动
+
+            静态方式
+            IPADDR: 192.168.1.9 IP地址
+            NETMASK=255.255.255.0
+            配置GateWay: 网关，一个端口到另一个端口的门户
+                192.168.1.1 网络高级，路由器就是
+            配置DNS Server: 域名服务器
+                scutil --dns，cat /etc/resolv.conf查看
+
+            多了一个：GATEWAY,DNS1
+
+    DHCP：Dynamic Host Configuration Protocol 动态主机配置协议
+        主要用于局域网环境，或者存在很多办公设备的局域网环境，为了自动分配IP地址等参数
+
+    nmtui: 控制NetWork Manager
+        选择编辑连接，选中enp0s3,进入编辑状态
+        设置成自动和手动
+
+        systemctl restart network 重启以生效
+
+
