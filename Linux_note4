@@ -229,4 +229,33 @@
         vim /etc/httpd/conf/httpd.conf
         [ 配置后无法获取index.html -> SELinux子系统阻止访问 ]
 
-    SELinux 安全子系统
+==7. SELinux 安全子系统
+    Security Enhanced Linux 安全增强型Linux
+    MAC Mandatory Access Control 强制访问控制，操作系统约束的访问控制
+        域限制，服务程序的功能限制
+        安全上下文，文件资源的访问限制
+
+    注意：防火墙是放置外界对本机的端口的访问
+
+    配置模式：enforcing:强制启用安全策略模式
+            permissive: 越权访问
+            disable: 越权不拦截也不警告
+
+    sestatus -v 查看se的状态
+    vim /etc/selinux/config  更改全局配置
+    getenforce 获取强制信息
+    setenforce 0 设置强制失效 setenforce 1 设置强制有效
+
+    管理SELinux -> semanage命令：
+        安装 -> yum provides semanage 查看什么包提供该命令
+                yum -y install policycoreutils-python
+
+        为新目录添加安全上下文：
+            semanage fcontext -a -t httpd_sys_content_t /home/web , /home/web/*
+            restorecon -Rv /home/web
+            -a：增加
+            -t: 安全性本文资料
+            fcontext：主要用在安全上下文方面。
+
+        查看安全上下文：
+            ls -Zd /home/web
