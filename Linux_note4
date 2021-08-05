@@ -198,3 +198,35 @@
             systemd-analyze blame 查看所有unit的耗时
             (慎用 systemctl mask xxx.service, 会屏蔽所有启动的操作)
 
+    [ https://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html ]
+
+== 6. Apache 安装
+    安装启动： yum -y install httpd， systemctl start httpd
+             systemctl enable httpd
+
+    外网访问：192.168.1.9:80
+            首先需要关闭防火墙，firewall-cmd --list-ports
+            1. 关闭防火墙 systemctl stop firewalld
+            2. 开放80端口 firewall-cmd --zone=public --add-port=80/tcp --permanent
+                    firewall-cmd --reload
+                    firewall-cmd --zone=public --query-port=80/tcp
+                    firewall-cmd --zone=public --remove-port=80/tcp --permanent
+
+    配置文件：服务目录，/etc/httpd, 主配置文件，/etc/httpd/conf/httpd.conf
+            访问日志，/var/log/httpd/access_log | error_log
+
+            ServerRoot 服务目录
+            Listen 监听的IP地址和端口号
+            User 运行服务的用户
+            Group 运行服务的群组
+            DocumentRoot 网站文件
+            ...
+
+    自定义网站：echo "Welcome to Imooc" > /var/www/html/index.html
+    自定义网站目录：
+        mkdir /home/web
+        echo "New Web Directory" > /home/web/index.html
+        vim /etc/httpd/conf/httpd.conf
+        [ 配置后无法获取index.html -> SELinux子系统阻止访问 ]
+
+    SELinux 安全子系统
