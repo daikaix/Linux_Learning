@@ -288,4 +288,74 @@
 
         systemctl restart network 重启以生效
 
+==9. Apache的虚拟主机功能
+    服务器分类：
+        独立服务器，仅提供给用户一个人使用，对硬件有完全的控制权，大中型网站
+        虚拟主机，virtual host，在服务器中划分一定的磁盘空间，只提供基础的网站访问和数据存储
+            一套房，n个房间，资源共享
+        虚拟专用主机，virtual Private Server, 需要具有一定的维护系统的能力
+            一套房，n个公寓，但是房间内部资源独立
+        ECS, Elastic Compute Service, 云服务器, 保存主机的镜像，安全性稳定性更高
+            一栋大楼，需要多大空间，就给多少空间
 
+    虚拟主机：
+        基于用户请求的IP地址，主机域名或端口号,提供多个网站同时为外部提供访问服务的技术
+        用户请求的资源不同，获取的网页内容也不相同
+
+    基于IP地址配置：
+        nmtui -> enp0s3 -> 添加两个新的IP地址 192.168.1.11/24 , 192.168.1.20/24
+        IPADDR,PREFIX=24 , IPADDR1,PREFIX1
+        注意：有时候IPping不通可能是这个IP被占用了，换一个即可
+
+        创建/home/web/11  /22  /index.html -> 192.168.1.11 | 20
+
+        修改 /etc/httpd/conf/httpd.conf, 配置<Virtual Host>
+        <VirtualHost 192.168.1.11>
+                 DocumentRoot /home/web/11
+                 ServerName www.linuxcoreapp.com
+                 <Directory /home/web/11>
+                         AllowOverride None
+                         Require all granted
+                 </Directory>
+        </VirtualHost>
+
+        <VirtualHost 192.168.1.20>
+                 DocumentRoot /home/web/20
+                 ServerName bbs.linuxcoreapp.com
+                 <Directory /home/web/20>
+                         AllowOverride None
+                         Require all granted
+                 </Directory>
+        </VirtualHost>
+
+        重启配置：systemctl restart httpd
+
+        结果： 不同的IP地址进行访问，对应不同的显示结果，这就是一个虚拟的主机
+
+    基于主机域名:
+        /etc/hosts 修改DNS服务,注意是访问的本机进行修改
+            192.168.1.11 www.linuxcoreapp.com bbs.linuxcoreapp.com
+
+        mkdir /home/web/www
+        mkdir /home/web/bbs
+        echo "www.com" > /home/web/www/index.html
+        echo "bbs.com" > /home/web/bbs/index.html
+        <VirtualHost 192.168.1.11>
+                 DocumentRoot /home/web/www
+                 ServerName www.linuxcoreapp.com
+                 <Directory /home/web/www>
+                         AllowOverride None
+                         Require all granted
+                 </Directory>
+        </VirtualHost>
+
+        <VirtualHost 192.168.1.11>
+                 DocumentRoot /home/web/bbs
+                 ServerName bbs.linuxcoreapp.com
+                 <Directory /home/web/bbs>
+                         AllowOverride None
+                         Require all granted
+                 </Directory>
+        </VirtualHost>
+
+        结果： 不同的域名相同的IP地址进行访问，对应不同的显示结果
