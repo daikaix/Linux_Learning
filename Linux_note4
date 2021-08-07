@@ -359,3 +359,51 @@
         </VirtualHost>
 
         结果： 不同的域名相同的IP地址进行访问，对应不同的显示结果
+
+==10. HTTPS加密网页数据
+    网站存放在: /home/web/index.html
+    HTTPS协议: HTTP over SSL/TLS，超文本安全传输协议
+              默认端口是443
+              SSL 是 Security Socket Layer, 安全的套接字层，对网络连接进行加密，使用非对称加密的方式
+              TLS 看作是SSL的新版本
+
+    CA: Certification Authorization 证书权威
+        为客户端确认所连接的网站的服务器提供的证书是否合法
+        数字证书就是经过CA认证的公钥，内容不止包含公钥
+
+    为Apache服务器配置HTTPS:
+        1. 防火墙开启443端口
+           firewall-cmd --zone=public --add-port=443/tcp --permanent
+           firewall-cmd --reload
+           firewall-cmd --zone=public --list-ports
+           firewall-cmd --zone=public --remove-port=443/tcp --permanent
+        2. 安装Apache的SSL支持模块
+           yum -y install mod_ssl
+           systemctl restart httpd
+           ls /etc/httpd/conf.d/ssl.conf
+        3. 私钥位置 /etc/pki/tls/private/localhost.key
+           证书位置 /etc/pki/tls/certs/localhost.crt
+               所有与数字证书相关的概念和技术，统称为pki
+               安全传输协议TLS
+        4. 使用https协议重新访问，获取到证书localhost.localdomain
+        5. 自制证书，自签名证书：
+           使用OpenSSL生成证书：
+            1. 生成私钥
+            mkdir /etc/httpd/pki  -> openssl genrsa -out server.key 2048
+            指定私钥的位数为2048位
+            私钥： server.key
+
+            2. 指定私钥获取对应的csr文件, 证书签名请求
+            openssl req -new -key server.key -out server.csr
+            CountryName CN, 等信息
+
+            3. 生成自签名证书crt
+            openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
+
+        6. 复制自制私钥到指定位置,并修改配置文件
+            cp server.key /etc/pki/tls/private/
+            cp server.crt /etc/pki/tls/certs/
+
+            vim /etc/httpd/conf.d/ssl.conf 更改SSLCertificateFile,KeyFile
+            systemctl restart httpd
+    注意：现在如果证书不经过CA认证，浏览器是无法访问的
