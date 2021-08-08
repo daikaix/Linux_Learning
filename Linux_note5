@@ -1,0 +1,38 @@
+==1. Java Web世界
+    Servlet: 动态生成HTML代码 -> SpringMVC
+    Tomcat: Java的服务程序
+    Jenkins: 持续集成工具，Servlet提供的一个Java应用程序
+
+    Tomcat与Apache的区别：
+    Apache是web服务器（静态解析，如HTML），tomcat是java应用服务器（动态解析，如JSP）
+    Apache是一款Web服务器软件，有多种产品，可以支持SSL技术，支持多个虚拟主机。
+    Tomcat只是一个servlet(jsp也翻译成servlet)容器，可以认为是apache的扩展，但是可以独立于apache运行
+    1）Apache是普通服务器，本身只支持html即普通网页，可以通过插件支持php，还可以与Tomcat连通
+      (Apache单向连接Tomcat，就是说通过Apache可以访问Tomcat资源，反之不然)
+    2）Apache只支持静态网页，但像Jsp动态网页就需要Tomcat来处理。
+    3）Apache和Tomcat整合使用，如果客户端请求的是静态页面，则只需要Apache服务器响应请求；
+    4）Apache和Tomcat是独立的，在同一台服务器上可以集成。
+
+==2. 配置Java环境并安装Tomcat
+    安装：
+        yum search java | grep openjdk  => java 1.8.0
+        查看需要安装的Java版本,devel版本
+        yum install tomcat => systemctl start tomcat, enable
+        开放防火墙 firewall-cmd --zone=public --add-port=8080/tcp --permanent
+
+    配置文件查看： rpm -ql tomcat
+        ls -dl /usr/share/tomcat/webapps -> /var/lib/tomcat/webapps
+        服务器配置：/etc/tomcat/server.xml
+        主配置：/etc/tomcat/tomcat.conf
+
+    插件安装：
+        tomcat-webapps
+        tomcat-admin-webapps
+        tomcat-docs-webapp
+        tomcat-javadoc
+
+    创建Tomcat用户：
+        /etc/tomcat/tomcat-users.xml
+        增加一个admin用户即可，123456， roles
+        Manager APP:可以查看到所有的webapps目录下的项目
+        Host Manager: 可以配置虚拟主机
