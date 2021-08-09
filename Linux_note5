@@ -36,3 +36,37 @@
         增加一个admin用户即可，123456， roles
         Manager APP:可以查看到所有的webapps目录下的项目
         Host Manager: 可以配置虚拟主机
+
+    Tomcat的Coyote Web服务器：只支持HTTP，处理静态文件效率低，
+        解决方案：使用Nginx或者Apache
+
+==3. 安装Jenkins
+    war包：web archieve
+    下载war包：wget https://mirrors.jenkins.io/war-stable/latest/jenkins.war
+            scp jenkins.war root@192.168.1.9:/root
+
+    war包放置到webapps文件夹中,并且添加安全上下文
+            mv jenkins.war /var/lib/tomcat/webapps
+            安全上下文：tomcat_var_lib_t -> restorecon -Rv .
+            还是不行： setenforce 0
+
+    登录配置：
+        密码位置：/usr/share/tomcat/.jenkins/secrets/initialAdminPassword
+        自己设置文件夹：
+            mkdir /var/lib/jenkins
+            chown tomcat:tomcat /var/lib/jenkins
+            vim /etc/tomcat/context.xml: 配置环境变量
+            vim /etc/tomcat/context.xml
+            <Environment name="JENKINS_HOME" value="/var/lib/jenkins" type="java.lang.String"/>
+
+    运行：
+        直接运行：java -jar jenkins.war
+        端口运行：java -jar jenkins.war --httpPort=8081
+        在Tomcat容器中运行
+
+    插件安装：
+        http访问：vim /usr/share/tomcat/.jenkins/hudson.model.UpdateCenter.xml
+        Install Suggested-Plugins
+        插件位置：jenkins/WEB-INF/detached-plugins
+    创建第一个admin用户：
+        使用Jenkins
