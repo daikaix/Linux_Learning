@@ -1,46 +1,46 @@
-1. find命令
-    常用选项：
-        -name 文件名   【 大小写敏感 】 -iname 大小写不敏感
-        -perm 文件权限  find . -perm 644
-        -prune 排除某些目录
-            结合path一起使用,忽略./test1,test2
-            find . -path ./test1 -prune -o -type f
-            find . -path ./test1 -prune -o -path ./test2 -prune -o -type f
+    1. find命令
+        常用选项：
+            -name 文件名   【 大小写敏感 】 -iname 大小写不敏感
+            -perm 文件权限  find . -perm 644
+            -prune 排除某些目录
+                结合path一起使用,忽略./test1,test2
+                find . -path ./test1 -prune -o -type f
+                find . -path ./test1 -prune -o -path ./test2 -prune -o -type f
 
 
-        -user 文件拥有者
-        -group 文件属组
+            -user 文件拥有者
+            -group 文件属组
 
-        -mtime -n|+n 更改时间   【 -n n天之内的文件 +n n天之前的文件 】
-        -mmin -n|+n
+            -mtime -n|+n 更改时间   【 -n n天之内的文件 +n n天之前的文件 】
+            -mmin -n|+n
 
-        -nogroup 无有效属组的文件
-        -nouser
+            -nogroup 无有效属组的文件
+            -nouser
 
-        -newer file1 ! file2 比文件1新，比文件2旧的文件
+            -newer file1 ! file2 比文件1新，比文件2旧的文件
 
-        -type
-            d[目录] f[文件] l[链接]
-        -size -n +n 文件大小查找 【 -n 小于 +n 大于 】
-
-
-        -mindepth n 从n级目录开始搜索
-        -maxdepth n 最多搜索到n级子目录
+            -type
+                d[目录] f[文件] l[链接]
+            -size -n +n 文件大小查找 【 -n 小于 +n 大于 】
 
 
-    指定查找范围： find /var/temp -name "*conf"
+            -mindepth n 从n级目录开始搜索
+            -maxdepth n 最多搜索到n级子目录
 
-    find . -user hdfs
-    find . -group yarn
 
-    只查找目录或文件：find /var -type d[目录] f[文件] l[链接]
+        指定查找范围： find /var/temp -name "*conf"
 
-    根据文件大小查找：find /var -size +10M 大于10M的文件
+        find . -user hdfs
+        find . -group yarn
 
-    根据最近时间查找：find /var -mtime -3    3天之内修改的文件
+        只查找目录或文件：find /var -type d[目录] f[文件] l[链接]
 
-    find . -type f -mindepth 2
-    find ./etc/ -type f -name '*conf' -maxdepth 2
+        根据文件大小查找：find /var -size +10M 大于10M的文件
+
+        根据最近时间查找：find /var -mtime -3    3天之内修改的文件
+
+        find . -type f -mindepth 2
+        find ./etc/ -type f -name '*conf' -maxdepth 2
 
 2. 操作
     打印结果： find . -name "*.txt" -printf "%p - %u /n"
