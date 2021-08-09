@@ -42,25 +42,25 @@
         find . -type f -mindepth 2
         find ./etc/ -type f -name '*conf' -maxdepth 2
 
-2. 操作
-    打印结果： find . -name "*.txt" -printf "%p - %u /n"
-            %p 是文件名，%u 是用户名
-    后接一个命令：
-        find one -name "*.txt" -exec chmod 600 {} \;
-        {} 表示对所有查找到的文件进行替换  \;表示结束
-        -ok也可以，但是会询问是否执行
+    2. 操作
+        打印结果： find . -name "*.txt" -printf "%p - %u /n"
+                %p 是文件名，%u 是用户名
+        后接一个命令：
+            find one -name "*.txt" -exec chmod 600 {} \;
+            {} 表示对所有查找到的文件进行替换  \;表示结束
+            -ok也可以，但是会询问是否执行
 
-    实例： find ./etc -size +1M -exec cp {} ./test_5/ \;
-        搜索/etc下的文件，以conf结尾，且大于10k, 将其删除
-        find ./etc/ -type f -name '*.conf' -exec rm -f {} \;
+        实例： find ./etc -size +1M -exec cp {} ./test_5/ \;
+            搜索/etc下的文件，以conf结尾，且大于10k, 将其删除
+            find ./etc/ -type f -name '*.conf' -exec rm -f {} \;
 
-        将/var/log/目录下的以log结尾的文件且更改时间在7天以上的删除
-        find /var/log -name '*.log' -mtime +7 -exec rm -rf {} \;
+            将/var/log/目录下的以log结尾的文件且更改时间在7天以上的删除
+            find /var/log -name '*.log' -mtime +7 -exec rm -rf {} \;
 
-    逻辑运算符：
-        -a 与
-        -o 或
-        -not 非
+        逻辑运算符：
+            -a 与
+            -o 或
+            -not 非
 
 3. 其他命令
     locate renamed_file
