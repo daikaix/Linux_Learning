@@ -1,0 +1,75 @@
+1. find命令
+    常用选项：
+        -name 文件名   【 大小写敏感 】 -iname 大小写不敏感
+        -perm 文件权限  find . -perm 644
+        -prune 排除某些目录
+            结合path一起使用,忽略./test1,test2
+            find . -path ./test1 -prune -o -type f
+            find . -path ./test1 -prune -o -path ./test2 -prune -o -type f
+
+
+        -user 文件拥有者
+        -group 文件属组
+
+        -mtime -n|+n 更改时间   【 -n n天之内的文件 +n n天之前的文件 】
+        -mmin -n|+n
+
+        -nogroup 无有效属组的文件
+        -nouser
+
+        -newer file1 ! file2 比文件1新，比文件2旧的文件
+
+        -type
+            d[目录] f[文件] l[链接]
+        -size -n +n 文件大小查找 【 -n 小于 +n 大于 】
+
+
+        -mindepth n 从n级目录开始搜索
+        -maxdepth n 最多搜索到n级子目录
+
+
+    指定查找范围： find /var/temp -name "*conf"
+
+    find . -user hdfs
+    find . -group yarn
+
+    只查找目录或文件：find /var -type d[目录] f[文件] l[链接]
+
+    根据文件大小查找：find /var -size +10M 大于10M的文件
+
+    根据最近时间查找：find /var -mtime -3    3天之内修改的文件
+
+    find . -type f -mindepth 2
+    find ./etc/ -type f -name '*conf' -maxdepth 2
+
+2. 操作
+    打印结果： find . -name "*.txt" -printf "%p - %u /n"
+            %p 是文件名，%u 是用户名
+    后接一个命令：
+        find one -name "*.txt" -exec chmod 600 {} \;
+        {} 表示对所有查找到的文件进行替换  \;表示结束
+        -ok也可以，但是会询问是否执行
+
+    实例： find ./etc -size +1M -exec cp {} ./test_5/ \;
+        搜索/etc下的文件，以conf结尾，且大于10k, 将其删除
+        find ./etc/ -type f -name '*.conf' -exec rm -f {} \;
+
+        将/var/log/目录下的以log结尾的文件且更改时间在7天以上的删除
+        find /var/log -name '*.log' -mtime +7 -exec rm -rf {} \;
+
+    逻辑运算符：
+        -a 与
+        -o 或
+        -not 非
+
+3. 其他命令
+    locate renamed_file
+    文件的数据库中进行查找，新创建的文件没有保存在数据库中，所以不能找到最新的文件
+    sudo updatedb  更新文件数据库   /var/lib/mlocate/mlocate.db
+
+    whereis 查看程序对应文件
+        whereis mysql
+    whereis -b mysql 只看二进制文件
+        -m 文档文件
+
+    which 只查找二进制文件

@@ -186,6 +186,48 @@
             http_access deny deny_file
 
 
+==6. Docker
+    dock码头，docker码头工人，Docker是容器引擎
+    容器类似于集装箱，Docker可以拉取这些集装箱
 
+    容器与虚拟机进行对比：
+    虚拟机：
+        基础设施(Infrastructure)。
+            它可以是你的个人电脑，数据中心的服务器，或者是云主机。
+        虚拟机管理系统(Hypervisor)。
+            利用Hypervisor，可以在主操作系统之上运行多个不同的从操作系统。
+            类型1的Hypervisor有支持MacOS的HyperKit，支持Windows的Hyper-V、Xen以及KVM。
+            类型2的Hypervisor有VirtualBox和VMWare workstation。
+        客户机操作系统(Guest Operating System)。
+            假设你需要运行3个相互隔离的应用，则需要使用Hypervisor启动3个客户机操作系统，也就是3个虚拟机。
+            这些虚拟机都非常大，也许有700MB，这就意味着它们将占用2.1GB的磁盘空间。
+            更糟糕的是，它们还会消耗很多CPU和内存。各种依赖。
 
+    容器：
+        基础设施(Infrastructure)。
+        主操作系统(Host Operating System)。
+            所有主流的Linux发行版都可以运行Docker。
+            对于MacOS和Windows，也有一些办法”运行”Docker。
+        Docker守护进程(Docker Daemon)。
+            Docker守护进程取代了Hypervisor，它是运行在操作系统之上的后台进程，负责管理Docker容器。
+        各种依赖
+            对于Docker，应用的所有依赖都打包在Docker镜像中，Docker容器是基于Docker镜像创建的。
+        应用
+            应用的源代码与它的依赖都打包在Docker镜像中，不同的应用需要不同的Docker镜像。
+            不同的应用运行在不同的Docker容器中，它们是相互隔离的。
 
+    安装：[https://docs.docker.com/engine/install/centos/]
+        配置aliyun的docker源：
+        sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+        安装docker
+        sudo yum install docker-ce docker-ce-cli containerd.io
+        运行验证：
+        systemctl start docket
+        docker run hello-world 由于本地没有镜像，需要从镜像仓库中拉取
+
+    使用实例：
+        docker run -it centos bash
+        docker pull nginx,tomcat,...
+        docker run -it centos /bin/echo "Hello Docker"
+        docker images
+        docker ps --help

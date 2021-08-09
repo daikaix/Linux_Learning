@@ -1,0 +1,24 @@
+1. grep
+    grep: 筛选数据 Globally search a Regular Expression and Print
+
+    基础搜索：grep path /etc/profile [ pattern,file ]
+        pattern: "Hello World" 有空格
+
+    忽略大小写：grep -i path /etc/profile
+    显示行号：grep -n path /etc/profile
+    只显示文本不在的行：grep -v path /etc/profile [颠倒]
+    递归查找： grep -r "Hello World" folder/
+
+    使用正则表达式： . ^ $ [] ? * + | ()
+        -E参数：grep -E ^Path /etc/profile
+               grep -E [Pp0-4a-zA-Z]ath /etc/profile
+    -F 不使用正则表达式
+
+    grep -n python file
+    grep -E "python|PYTHON" file
+
+    了解：-w 只查找单词， -x 只匹配整行  -l 只列出匹配的文件名，不显示具体匹配行的内容
+         -c 只显示行数
+
+2. egrep
+    等价于 grep -e
