@@ -62,14 +62,14 @@
             -o 或
             -not 非
 
-3. 其他命令
-    locate renamed_file
-    文件的数据库中进行查找，新创建的文件没有保存在数据库中，所以不能找到最新的文件
-    sudo updatedb  更新文件数据库   /var/lib/mlocate/mlocate.db
+    3. 其他命令
+        locate renamed_file
+        文件的数据库中进行查找，新创建的文件没有保存在数据库中，所以不能找到最新的文件
+        sudo updatedb  更新文件数据库   /var/lib/mlocate/mlocate.db
 
-    whereis 查看程序对应文件
-        whereis mysql
-    whereis -b mysql 只看二进制文件
-        -m 文档文件
+        whereis 查看程序对应文件
+            whereis mysql
+        whereis -b mysql 只看二进制文件
+            -m 文档文件
 
-    which 只查找二进制文件
+        which 只查找二进制文件
