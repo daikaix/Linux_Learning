@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 # 绝对路径
 . /xx/lib/bash_function
 

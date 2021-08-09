@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # nginx服务脚本
 this_pid=$$

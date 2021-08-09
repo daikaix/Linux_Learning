@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # nginx服务脚本查看
 # sh nginx_daemon.sh  [ 不可以脚本命名为nginx ]
