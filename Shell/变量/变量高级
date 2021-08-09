@@ -67,19 +67,19 @@
 
     注意：$(()) 用来进行运算，可以使用num++,num--操作
 
-6. 有类型变量
-    为变量定义类型，使用declare和typeset命令，两者等价
-    -r 只读  -i 整数
-    -a 数组  -f 显示脚本前定义的所有函数及内容
-    -F 显示此脚本前定义过的函数名
-    -x 定义为环境变量
+    6. 有类型变量
+        为变量定义类型，使用declare和typeset命令，两者等价
+        -r 只读  -i 整数
+        -a 数组  -f 显示脚本前定义的所有函数及内容
+        -F 显示此脚本前定义过的函数名
+        -x 定义为环境变量
 
-    取消：- 变为 + 即可
+        取消：- 变为 + 即可
 
-    数组：
-        定义：array=("jones" "mike" "kobe" "jordan")
-        输出：${array[@]}, ${array[0]}
-        获取长度：${#array[@]}, ${#array[0]}
+        数组：
+            定义：array=("jones" "mike" "kobe" "jordan")
+            输出：${array[@]}, ${array[0]}
+            获取长度：${#array[@]}, ${#array[0]}
 
 7. 数学运算
     expr $num1 operator $num2

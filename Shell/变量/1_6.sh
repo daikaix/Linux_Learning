@@ -1,4 +1,4 @@
-#! /bin/bash
+#!  /bin/bash
 
 # 可以直接修改，只读无法修改
 var1="hello world"
@@ -16,7 +16,7 @@ num2=$num1+20
 
 expr $num1 + 10
 
-declare -r num3
+declare -i num3
 num3=$num1+20
 
 # 将函数的名称列出
