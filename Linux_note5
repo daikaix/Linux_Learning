@@ -146,3 +146,46 @@
             server中：
             # redirect HTTP requests to HTTPS
             return 301 https://$host$request_uri;
+
+==5. 安装Squid作为代理缓存服务器
+    proxy-cache: 代理缓存，如果数据已经缓存，直接返回
+    优点：
+        授权或禁止访问某些资源，防止访问电影网站，招聘网站等
+        提高带宽
+    Squid:
+        默认监听3128端口，yum install squid
+        防火墙添加3128端口
+
+        对server服务器配置静态ip,桥接模式，不能上外网
+        在浏览器上设置上添加proxy,HTTP Proxy 192.168.1.9即可
+
+    访问控制配置：
+        主配置文件：/etc/squid/squid.conf (rpm -ql squid)
+        配置命令查看： grep -vE "^#|^$" /etc/squid/squid.conf
+
+        http_port: 指定squid监听的地址和端口，可以配置多个
+        coredump_dir: 其中写入core错误文件的目录
+        refresh_pattern: 判断文件新旧的指令
+        acl: Access Control Lists 访问控制列表
+            localnet，SSL_ports，Safe_ports
+            port
+
+        http_access: 根据acl允许或者禁止某些连接
+            allow,deny
+        配置实例：
+            acl client src 192.168.1.9
+            http_access allow client
+            http_access deny all
+
+            url中有imooc,则进行拦截
+            acl deny_keyword url_regex -i imooc
+            http_access deny
+
+            禁止下载游戏文件
+            acl deny_file urlpath_regex -i \.rar$ \.avi$ \.zip$
+            http_access deny deny_file
+
+
+
+
+
