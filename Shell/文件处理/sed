@@ -11,4 +11,12 @@
         -r: 支持扩展正则表达式
         -i: 直接修改文件内容 [ 否则是打印在命令行中 ]
 
-
+2. pattern详解
+    pattern:
+        10cmd                       10
+        10,20cmd                    10-20
+        10,+5cmd                    10-15
+        /pattern1/cmd               匹配
+        /pattern1/,/pattern2/cmd    匹配1-匹配2 [ 如果匹配不到，就到最后 ]
+        10,/pattern1/cmd            10-匹配1
+        /pattern1/,10cmd            匹配1-10 [ 匹配1大于匹配2，只打印一行 ]
