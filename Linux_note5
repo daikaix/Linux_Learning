@@ -70,3 +70,79 @@
         插件位置：jenkins/WEB-INF/detached-plugins
     创建第一个admin用户：
         使用Jenkins
+
+==4. Nginx安装
+    代理：Proxy, 反向代理，正向代理,负载均衡
+    安装：
+        yum install epel-release  EPEL源，额外的软件包
+        yum install nginx
+    启动：
+        systemctl start nginx ( 首先需要关闭 apache,httpd )
+        systemctl enable nginx
+
+    配置文件：rpm -ql nginx
+        主配置文件：/etc/nginx/nginx.conf
+        首页信息：/usr/share/nginx/html/index.html
+
+    配置nginx:
+    1. 先配置Apache监听其他端口
+        http 80 https 443 apache[ http 7080 https 7443 ]
+        先配置apache 监听其他端口 vim /etc/httpd/conf/httpd.conf
+                              vim /etc/httpd/conf.d/ssl.conf
+            SELinux添加端口： semanage port -a -t http_port_t -p tcp 7080
+            firewall添加端口： firewall-cmd --zone=public --add-port=7080/tcp --permanent
+    2. 反向代理
+        vim /etc/nginx/nginx.conf
+        nginx.conf:
+            work_processes: 进程数
+            events: 每个进程的最大连接数，worker_connections
+            error_log: 错误日志
+            include: 包含的其他配置文件
+            http
+                logformat 日志格式main $remote_addr$remote_user
+
+                添加区块：
+                    upstream backend_jenkins {
+                        server 127.0.0.1:8080;
+                    }
+
+                    upstream backend_apache {
+                        server 127.0.0.1:7080;
+                    }
+
+                server: 设置虚拟主机
+                    listen 监听端口
+                    server_name 域名 www.linuxcoreapp.com linuxcoreapp.com
+                    root 对应默认静态文件查找位置，可以放在Tomcat对应的文件位置
+                    location 位置
+                        location / {
+                            proxy_pass http://backend_apache;
+                            #proxy_pass 代理转接
+                            #
+                        }
+                        location = /jenkins {
+                                proxy_pass http://backend_jenkins;
+                        }
+
+                        // 增加配置静态文件请求地址，否则nginx自动访问/usr/share/nginx/html/
+                        location ~ .* {
+                            proxy_pass     http://backend_jenkins;
+                            proxy_set_header Host $http_host;
+                            proxy_set_header X-Real-IP $remote_addr;
+                            proxy_set_header X-Fonwarded-For $proxy_add_x_forwarded_for;
+                        }
+                    error_page
+
+        修改：/etc/hosts -> 对应数据为192.168.1.9 www.linuxcoreapp.com
+
+        支持HTTPS：
+            将server注释去除
+            将ssl的公钥和证书存放在指定目录下
+            ssl_certificate "/etc/pki/nginx/server.crt";
+            ssl_certificate_key "/etc/pki/nginx/private/server.key";
+            /etc/pki/tls/private/server.key
+            /etc/pki/tls/certs/server.crt
+
+            server中：
+            # redirect HTTP requests to HTTPS
+            return 301 https://$host$request_uri;
