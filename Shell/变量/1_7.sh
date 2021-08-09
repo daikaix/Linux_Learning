@@ -1,4 +1,4 @@
-#! /bin/bash
+#!  /bin/bash
 
 # 空格分开，转移符号要加
 num1=30
