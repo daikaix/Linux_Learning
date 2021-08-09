@@ -1,0 +1,14 @@
+1. sed的工作模式
+    本质是流编辑器
+    语法格式：
+        stdout | sed [option] "pattern command"
+        sed [option] "pattern command" file
+
+    option:
+        -n: 只打印匹配的行, [ 一开始是打印出原行的信息，在打印处理后的信息，不加n打印两遍 ]
+        -e: 多个匹配模式使用, [ 如果有多个匹配模式，必须使用-e ]
+        -f: 指定命令对应的文件, [ 文件对应 pattern command ]
+        -r: 支持扩展正则表达式
+        -i: 直接修改文件内容 [ 否则是打印在命令行中 ]
+
+
