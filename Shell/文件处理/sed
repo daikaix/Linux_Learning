@@ -47,3 +47,46 @@
 
     注意：
         匹配模式中如果存在变量，需要使用双引号，否则使用''将变量括起来
+
+4. 查找文件特定内容
+    一些实例：
+        sed -n '20p' /etc/passwd
+        sed -n '8,+5p' /etc/passwd
+        sed -n '/\/bin\/bash/,5p' /etc/passwd
+
+    脚本练习：
+        处理一个类似MYSQL配置文件my.conf的文本，编写脚本统计每个段的名称以及参数对应的信息
+        获取FILE_NAME:
+            FILE_NAME=$1
+
+        function get_all_segment
+            获取[xx]: grep -E "^\[" $FILE_NAME
+                     sed -n "/\[.*\]/p" $FILE_NAME
+
+            提取xx: sed -n 's/\[\(.*\)\]/\1/g;p'
+                   sed 's/\[\(.*\)\]/\1/g'
+                   sed -e 's/\[//g' -e 's/\]//g'
+
+            遍历： for seg in `get_all_segment`
+                  do
+                    echo "配置项:$seg"
+                  done
+
+        function count_items_in_segment
+            获取两个属性之间的行：
+                sed -n '/\['$1'\]/,/\[.*\]/p' $FILE_NAME
+            排除空行，[行，#行
+                grep -v "^#" | grep -v "^$" | grep -v "\[.*\]"
+            统计行信息
+                wc -l
+                index=0
+                for item in $items
+                do
+                    index=`expr $index + 1`
+                done
+                echo $index
+
+        显示数据：
+            number=0
+            number=`expr $number + 1`
+            count=`count_items_in_segment $seg`
