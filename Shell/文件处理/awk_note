@@ -34,3 +34,31 @@
         %20s 右对齐，占位20个符号
         %-20s
         %0.2f
+
+4. 模式匹配方式
+    RegExp：
+        匹配文件行中含有root的所有行：
+        awk 'BEGIN{FS=":"} /root/{print $0}' passwd
+        匹配以yarn开头的行：
+        awk 'BEGIN{FS=":"} /^yarn/{print $0}' passwd
+
+    关系运算:
+        <,>,<=,>=,==,!=
+        ~匹配正则表示式，!~ 不匹配正则表达式
+
+        匹配文件第三个字段小于50
+        awk 'BEGIN{FS=":"} $3<50{print $0}' passwd
+        awk 'BEGIN{FS=":"} $3==1{print $0}' passwd
+        字符串比较,正则使用
+        awk 'BEGIN{FS=":"} $7=="/bin"{print $0}' passwd
+        awk 'BEGIN{FS=":"} $7~/\/bin.*/{print $0}' passwd
+        数字3位以上
+        awk 'BEGIN{FS=":"} $3~/[0-9]{3,}/{print $0}' passwd
+        awk 'BEGIN{FS=":"} $3!~/[0-9]{3,}/{print $0}' passwd
+
+    布尔运算:
+        ||,&&,!
+        包含hdfs或者yarn
+        awk 'BEGIN{FS=":"} $1~/hdfs/ || $1=="yarn"{print $0}' passwd
+        第三个字段小于50，第四个字段大于50
+        awk 'BEGIN{FS=":"} $3<50 && $4>50{print $0}' passwd
