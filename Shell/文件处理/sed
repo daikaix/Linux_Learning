@@ -100,3 +100,22 @@
         sed -i '/[:blank:]*#/d;/^$/d' nginx.conf
     不以#开头的行，都加上*
         sed -i 's/^[^#]/\*&/g' nginx.conf
+
+6. 利用sed修改文件内容
+    只修改第一行的第一个root为ROOT
+        sed -i '1s/root/ROOT/' passwd
+    修改第五行到第十行的root为ROOT
+        sed -i '5，10s/root/ROOT/g' passwd
+    将匹配到的行进行替换操作
+        sed -i '/\/bin\/bash/s/bin/BIN/g' passwd
+    删除数字
+        sed -i 's/[0-9]*//g' file.txt
+
+7. 利用sed追加内容
+    sed -i '10a Add Line Behind' passwd
+    匹配行后添加
+    sed -i '/\/bin\/bash/a Add Line Behind' passwd
+    匹配行前添加
+    sed -i '/\/bin\/bash/i Add Line Behind' passwd
+
+    sed -i '/^yarn/r /etc/passwd' passwd
