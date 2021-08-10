@@ -90,3 +90,13 @@
             number=0
             number=`expr $number + 1`
             count=`count_items_in_segment $seg`
+
+5. 利用sed删除特定内容
+    以yarn开头的行到最后一行：
+        sed -i '/^yarn/,$d' passwd
+    删除空行, 注释行    空格 => [:blank:] 表示空格
+        sed -i '/^#/d;/^$/d' nginx.conf
+    删除#,但不是开头的
+        sed -i '/[:blank:]*#/d;/^$/d' nginx.conf
+    不以#开头的行，都加上*
+        sed -i 's/^[^#]/\*&/g' nginx.conf
