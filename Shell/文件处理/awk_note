@@ -62,3 +62,60 @@
         awk 'BEGIN{FS=":"} $1~/hdfs/ || $1=="yarn"{print $0}' passwd
         第三个字段小于50，第四个字段大于50
         awk 'BEGIN{FS=":"} $3<50 && $4>50{print $0}' passwd
+
+5. 表达式写法
+    算数运算符
+        + - * / % ^|** ++x x++
+
+        # 使用awk计算空白行数量
+        awk 'BEGIN{num=0} /^$/{num++} END{print num}' /etc/services
+
+        # 计算学生课程分数平均值
+        Allen 80 90 96 98
+        Mike  93 98 92 91
+        ...
+
+        注意：
+            一行一行的输出,第一行为 Allen 80 80 96 98 91
+            最后一行为 Average xx xx xx xx
+        awk 'BEGIN{num1=0;num2=0;num3=0;num4=0;n=0} {num1+=$2;num2+=$3;num3+=$4;num4+=$5;n++;
+        total=($2+$3+$4+$5)/4; printf "%s %s\n",$0,total} END{printf "%8d%3d%3d%3d\n",num1/n,num2/n,num3/n,num4/n}' student.txt
+
+    条件循环语句：
+    if(){} else if(){} else{}
+
+        第三个字段小于50，第四个字段大于50
+        对命令进行格式化：scripts.awk
+        BEGIN{
+            FS=":"
+        }
+        {
+            if($3<50 && $4>100)
+            {
+                print $0
+            }
+            else if($4<50)
+            {
+                print $0
+            }
+        }
+        awk -f scripts.awk passwd
+
+    do while循环
+        实例：计算1到100的和，用while，do while循环实现
+        BEGIN{
+            while(i<=100)
+            {
+                sum+=i;
+                i++;
+            }
+            print sum
+        }
+
+        BEGIN{
+            do{
+                i++;
+                sum+=i;
+            }while(i<100)
+            print sum
+        }
