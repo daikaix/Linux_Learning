@@ -130,3 +130,35 @@
     match(str,RE)       按照RE查找，返回index
     sub(RE,RepStr,str)  只替换一个
     gsub(RE,RepStr,str) 替换所有
+
+7. 常用选项
+    -v 参数传递
+        awk 'BEGIN{print $num1}' 无数值
+        awk -v var1="$var" 'BEGIN{print var1}' 有数值
+    -f 指定脚本文件
+    -F 指定分隔符  与FS=":"功能一致
+    -V 查看版本号
+
+8. awk数组用法
+    Shell数组用法：
+        array=("Allen" "Mike")
+
+        打印: echo ${array[1]}  从0开始
+        打印元素个数: echo ${#array[@]}
+        打印元素长度: echo ${#array[2]}
+        元素赋值: array[3]="Li"
+        删除元素: unset array[2],unset array   删除后，其他元素的下标保持不变
+        分片访问: echo ${array[@]:1:3}
+        元素内容替换: ${array[@]/e/E} ${array[@]//e/E}
+        数组的遍历: for a in ${array[*]}; do echo $a; done
+
+    awk数组用法：
+        array["var2"]="Hao"
+
+        for(a in array)
+            print array[a]
+
+    实例：
+        统计主机上所有TCP连接状态数，按照每个TCP状态分类
+        netstat -an | grep tcp | awk '{array[$6]++}END{for(a in array) print a,array[a]}'
+
