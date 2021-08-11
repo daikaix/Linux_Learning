@@ -285,3 +285,24 @@
 
         或者进入MySQL控制台：
         Mysql>source 【sql脚本文件的路径全名】 或 Mysql>\. 【sql脚本文件的路径全名】
+
+==8. CentOS救援模式
+    SELinux出现错误，
+        无法正常启动，可以进入救援模式
+
+        在开机过程中，按e键，进入内核编辑界面
+        在ro 改为rw  init=/sysroot/bin/sh
+        Ctrl+x 来启动
+
+        chroot /sysroot 作为根目录
+        vim /etc/selinux/config
+        SELinux=permissive
+
+    修改root密码：
+        passwd root -> 至少8位的新密码
+        exit
+        reboot
+
+==9.
+
+
