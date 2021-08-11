@@ -119,3 +119,14 @@
             }while(i<100)
             print sum
         }
+
+6. 字符串函数
+    length(str)         计算字符串长度
+    index(str1,str2)    在str1中查找str2的位置，返回值为位置索引，从1计数
+    tolower             小写
+    toupper             大写
+    substr(str,m,n)     m,n
+    split(str,arr,fs)   按fs切割字符串，结果保存arr
+    match(str,RE)       按照RE查找，返回index
+    sub(RE,RepStr,str)  只替换一个
+    gsub(RE,RepStr,str) 替换所有
