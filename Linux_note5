@@ -231,3 +231,57 @@
         docker run -it centos /bin/echo "Hello Docker"
         docker images
         docker ps --help
+
+==7. 安装MySQL5.7
+    LAMP:Linux+Apache+MySQL(MariaDB)+PHP
+
+    CentOS7 安装MySQL 5.7 版本：
+        1. 添加Mysql5.7仓库 [ CentOS 7的默认yum仓库中并没有MySQL5.7 ]
+            sudo rpm -ivh https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+        注意：rpm 补充，找到rpm安装包的网址后，直接使用rpm -ivh 即可安装
+             rpm -ql 是查看rpm安装包安装的一些详细信息，文档位置
+
+        2. yum安装MySQL
+           yum -y install mysql-community-server
+           systemctl start mysqld
+           systemctl enable mysqld
+           systemctl status mysqld
+
+        3. 获取临时密码,并修改密码
+            vim /var/log/mysqld.log  -> temporary password
+            alter user 'root'@'localhost' identified by '0k9R8kKAq*Le';
+            set global validate_password_policy=0;
+            set global validate_password_length=1;
+            alter user 'root'@'localhost' identified by 'admin';
+
+    mariadb:
+        yum list all | grep mariadb
+        yum -y install mariadb mariadb-libs mariadb-server
+        systemctl start mariadb
+
+    基础操作：
+        /var/lib/mysql/ -> 一些生成的表
+        select version();
+        show databases; 查看数据库表
+        drop database school;
+
+        create table info(ID int not null);
+
+        该用户可以在任意位置访问：
+        grant all on school.* to dbuser@'%' identified by '123456'
+        grant all on myshop.* to dbuser@'localhost' identified by '123456'
+        grant all on school.* to dbuser@'192.168.1.9' identified by '123456'
+
+        use mysql;
+        showtables;
+        desc user;
+        select User,Host,Password from user;
+
+        mysql -u dbuser -p -h localhost -> 123456
+
+    导入数据库文件：
+        mysql –uroot –padmin –D数据库<【sql脚本文件路径全名】
+        mysql -uroot -padmin -Dmyshop < myshop.sql
+
+        或者进入MySQL控制台：
+        Mysql>source 【sql脚本文件的路径全名】 或 Mysql>\. 【sql脚本文件的路径全名】
