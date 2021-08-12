@@ -317,4 +317,36 @@
     fdisk: 显示磁盘的分区信息
 
 
+==10. 磁盘分区
+    disk partition: 磁盘分区，虚拟概念
+    HDD: 机械硬盘，盘片转动，指定位置进行读写操作
+    SDD: 固态硬盘，NAND闪存制成
 
+    文件系统：每个分区，文件按照一定方法存储和组织起来，称为文件系统
+        用户存储无需关心存储的物理位置
+        实现了数据的存储和分级组织，每个分区只有一种文件系统
+
+        种类：
+        Windows:
+            FAT16,FAT32  管理1T,2T
+            NTFS: new Technology File System ,管理 16 Eo
+        Linux:
+            ext2: Extended2
+            ext3,ext4
+            xfs: 快速恢复可能被破坏的文件
+
+    ls -l /dev/sd?
+    ls -l /dev/sd??
+    硬盘和磁盘分区的命名规则
+        h,s: IDE接口，SATA接口
+        d: drive,磁盘驱动器
+        abcd: 顺序
+        实例：sda1,sdb1,sdb2,sdx 表示移动硬盘或者u盘
+
+    主分区：
+        GPT划分128个主分区，默认是只有四个分区
+    扩展分区
+    逻辑分区：硬盘上连续的区域，编号5开始
+    swap分区：将磁盘空间虚拟为内存来使用
+    /boot分区：引导分区
+    根分区：/，相当于C盘
