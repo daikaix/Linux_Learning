@@ -191,3 +191,28 @@
         -b, --become           代替旧版的sudo切换
             --become-user=USERNAME 指定sudo的runas用户,默认为root
         -K, --ask-become-pass  提示输入sudo时的口令
+
+10. ansible主机配置方式
+    ansible的Host-pattern
+    匹配主机的列表
+        All ：表示所有Inventory中的所有主机
+            ansible all –m ping
+        * :通配符
+            ansible "*" -m ping  (*表示所有主机)
+            ansible 192.168.1.* -m ping
+            ansible "li*" -m ping
+        或关系 ":"
+            ansible "websrvs:appsrvs" -m ping
+            ansible “192.168.1.10:192.168.1.20” -m ping
+        逻辑与 ":&"
+            ansible "websrvs:&dbsrvs" –m ping
+            在websrvs组并且在dbsrvs组中的主机
+        逻辑非 ":!"
+            ansible 'websrvs:!dbsrvs' –m ping
+            在websrvs组，但不在dbsrvs组中的主机
+            注意：此处为单引号
+        综合逻辑
+            ansible 'websrvs:dbsrvs:&appsrvs:!ftpsrvs' –m ping
+        正则表达式
+            ansible "websrvs:&dbsrvs" –m ping
+            ansible "~(web|db).*\.magedu\.com" –m ping
