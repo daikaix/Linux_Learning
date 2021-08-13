@@ -391,3 +391,50 @@
 
         umount 撤销已经挂载的设备文件
 
+==13. 添加硬盘设备和交换分区 fdisk mkfs
+    虚拟机软件进行模拟：
+        存储，控制器，硬盘添加，新建一个即可
+    启动虚拟机：
+        ls -l /dev/sd? 出现了两个硬盘
+        ls -l /dev/sd?? 只有sda,sdb还没有挂载
+
+    fdisk:
+        集添加，删除，转换，分区等功能于一身
+
+        fdisk /dev/sdb 进入command模式：
+            m 查看可用参数
+            n 添加新的分区
+            d 删除某个分区信息
+            l 列出所有可用的分区信息
+            t 改变某个分区的类型
+            p 查看分区信息
+            w 保存并退出
+            q 不保存直接退出
+
+        p 发现没有分区
+        n -> 分区类型：p,primary分区 分区号默认为1
+             起始第一个扇区开始的位置
+             最后一个扇区的位置，+2G 即为创建一个2G的分区
+        w
+    格式化文件系统：
+        mkfs: 用于格式化，指定文件系统
+        mkfs.xfs /dev/sdb1
+    挂载该硬盘：
+        mkdir /newFS
+        mount /dev/sdb1 /newFS/
+
+    新添加一个分区作为交换分区：
+        fdisk /dev/sdb
+        n -> p,2,  +3G
+        p,w
+        partprobe
+        设置为交换分区,并启用：
+        mkswap /dev/sdb2  -> free -m 还没有进入到Swap分区中
+        swapon /dev/sdb2
+
+    设置重启依然生效：
+        vim /etc/fstab
+        添加： /dev/sdb1 /newFS xfs defaults 0 0
+        添加： /dev/sdb2 swap swap defaults 0 0
+
+
