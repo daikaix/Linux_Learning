@@ -96,3 +96,49 @@
         /usr/bin/ansible-console  基于Console界面与用户交互的执行工具
 
         这些都是通过Python来进行编写的
+6. 主机清单的配置
+    vim /etc/ansible/hosts
+        1. ansible的主要功用在于批量主机操作，为了便捷地使用其中的部分主机，
+           可以在inventory file中将其分组命名
+        2. inventory file可以有多个，且也可以通过Dynamic Inventory来动态生成
+
+    添加方式：
+    1. 直接添加：
+        192.168.1.8
+        192.168.1.7
+        192.168.1.11
+    2. 主机分组
+        可以将同一个主机同时归并到多个不同的组中
+        如果目标主机使用了非默认的SSH端口，还可以在主机名称之后使用冒号加端口号来标明
+        [list1]
+        192.168.1.8
+        192.168.1.7
+        [list2]
+        192.168.1.8
+        192.168.1.11
+        [list3]
+        192.168.1.[8:11]
+
+        ansible list1 -m ping
+        ansible list2 -m ping
+
+    3. 写域名
+        自己修改对应的DNS配置，域名对应的IP地址
+
+    登录方式：
+    1. 密码登录：
+        ansible 192.168.1.8 -m ping -u root -k
+        admin
+
+        注意：ansible是默认关闭使用密码连接的，开启需要配置/etc/ansible/ansible.cfg
+             中的host_key_checking=False
+    2. 基于ssh-keygen登录：
+        配置ssh免密登录： ssh-keygen  先看一下.ssh目录中有没有id_rsa文件
+        生成秘钥和公钥在 /root/.ssh/id_rsa 文件夹下
+        将公钥传递到服务器：ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.8，7，11
+        在客户机上可以观察到 ssh文件夹下的 authorized_keys
+
+        SSH提速：
+            vim /etc/ssh/sshd_config
+            UseDNS no
+            GSSAPIAuthentication no
