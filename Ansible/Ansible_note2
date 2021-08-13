@@ -35,3 +35,33 @@
         ansible all -a "ls -dl /data"
     2. 进入默认模块执行操作
         ansible all -a "chdir=/data mkdir ./data1"
+
+3. Script模块,Copy模块,Fetch模块
+    Script:
+        自动执行脚本，ansible all -m script -a test.sh
+    Copy模块:
+        1. 参数
+            src : 源文件  指定拷贝文件的本地路径  (如果有/ 则拷贝目录内容,比拷贝目录本身)
+            dest: 指定目标路径
+            mode: 设置权限
+            backup: 备份源文件
+            content: 代替src  指定本机文件内容,生成目标主机文件
+        2. 实例
+            如果目标存在，默认覆盖，此处指定先备份,备份文件名：test2.sh.3129.2021-08-11@20:17:04~
+            ansible list1 -m copy -a "src=test.sh dest=/tmp/test2.sh owner=dai mode=755 backup=yes"
+            ansible list1 -a "ls -l /tmp"
+            指定内容，直接生成目标文件
+            ansible list1 -m copy -a "content='test content\nxxx' dest=/tmp/test.txt"
+            复制目录
+            ansible list1 -m copy -a "src=. dest=/tmp/ owner=dai mode=755 backup=yes"
+    Fetch模块:
+        ansible-doc -s fetch
+        从远程主机提取文件至主控端，与copy相反,只能获取文件，不能获取文件夹
+
+        实例：
+            获取sh文件,文件放置路径为 /data/192.168.1.7/tmp/test2.sh
+            ansible list1 -m fetch -a 'src=/tmp/test2.sh dest=/data'
+            ls -l /data/scripts
+            打包获取所有的日志文件, shell模块不好打包
+            ansible list1 -a 'ls /var/log'
+            ansible list1 -m fetch -a 'src=/root/test.tar.gz dest=/data/'
