@@ -1,0 +1,16 @@
+1. ansible命令执行过程
+    1. 加载自己的配置文件 默认/etc/ansible/ansible.cfg
+    2. 加载自己对应的模块文件，如command
+    3. 通过ansible将模块或命令生成对应的临时py文件，
+     并将该文件传输至远程服务器的对应执行用户$HOME/.ansible/tmp/ansible-tmp-数字/XXX.PY文件
+    4. 给文件+x执行
+    5. 执行并返回结果
+    6. 删除临时py文件，sleep 0退出
+
+    执行状态：
+      绿色：执行成功并且不需要做改变的操作
+      黄色：执行成功并且对目标主机做变更
+      红色：执行失败
+
+    ansible all -m ping -vvv 可以查看到复制的临时文件，使用了Put命令，chmod加权限
+
