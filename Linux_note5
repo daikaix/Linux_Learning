@@ -350,3 +350,31 @@
     swap分区：将磁盘空间虚拟为内存来使用
     /boot分区：引导分区
     根分区：/，相当于C盘
+
+    fdisk -l
+    parted -l 显示磁盘分区的信息
+
+    Number  Start   End     Size    Type     File system  标志
+     1      1049kB  1075MB  1074MB  primary  xfs          启动
+     2      1075MB  8590MB  7515MB  primary               lvm
+
+    gparted
+
+==11. 字符设备和块设备
+    字符设备： ls -l 以c开头的表示字符设备 例如：/dev/tty, /dev/null 黑洞文件, /dev/zero
+    块设备：支持随机访问，可以在设备的任意位置读取一定长度的数据
+          文件属性表示是b,是block的首字母，比如硬盘等 /dev/sda1, /dev/sda2
+
+    dd命令：
+        用指定大小的块拷贝文件，
+
+        dd if=/dev/sda of=backup
+        if=指定拷贝的文件，of指定拷贝的位置
+        dd if=/dev/zero bs=5M count=10 of=aFile
+        拷贝10块，每块5M
+        dd if=/dev/zero bs=5M count=10 seek=20 of=bFile
+        创建空洞文件，跳过20个块的大小，再写入10个5M大小的块
+
+    ls 与 du 的区别：
+        ls是文件逻辑大小
+        du是文件在磁盘中所占的空间大小
