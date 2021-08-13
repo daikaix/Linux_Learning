@@ -77,3 +77,22 @@
             yum install ansible
         确认安装：
             ansible --version
+
+5. Ansible 配置文件
+    rpm -ql ansible | less 有很多，主要是各种管理的模块
+
+    配置文件，配置文件一般都放在/etc/ansible下
+        /etc/ansible/ansible.cfg  主配置文件,配置ansible工作特性(一般无需修改)
+        /etc/ansible/hosts        主机清单(将被管理的主机放到此文件)
+        /etc/ansible/roles/       存放角色的目录
+
+    程序
+        /usr/bin/ansible          主程序，临时命令执行工具
+        /usr/bin/ansible-doc      查看配置文档，模块功能查看工具
+        /usr/bin/ansible-galaxy   下载/上传优秀代码或Roles模块的官网平台
+        /usr/bin/ansible-playbook 定制自动化任务，编排剧本工具
+        /usr/bin/ansible-pull     远程执行命令的工具
+        /usr/bin/ansible-vault    文件加密工具
+        /usr/bin/ansible-console  基于Console界面与用户交互的执行工具
+
+        这些都是通过Python来进行编写的
