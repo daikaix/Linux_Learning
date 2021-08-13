@@ -65,3 +65,24 @@
             打包获取所有的日志文件, shell模块不好打包
             ansible list1 -a 'ls /var/log'
             ansible list1 -m fetch -a 'src=/root/test.tar.gz dest=/data/'
+
+4. File,Hostname 模块
+    File模块：
+        设置文件属性
+        path: 要管理的文件路径 (强制添加)
+        recurse: 递归,文件夹要用递归
+        src:  创建硬链接,软链接时,指定源目标,配合'state=link' 'state=hard' 设置软链接,硬链接
+        state: 状态
+              absent 删除, touch 新建, directory, link, hard
+        实例：
+            创建文件：ansible list1 -m file -a 'path=./test.txt state=touch'
+            创建目录：ansible list1 -m file -a "path=./testdir state=directory"
+            创建多级目录：ansible list1 -m file -a "path=./testdir1/testdir2/testdir3 state=directory recurse=yes"
+
+            删除(自动递归删除)：ansible list1 -m file -a "path=./testdir1 state=absent"
+            配置权限：ansible list1 -m file -a "path=./test.txt owner=dai mode=755"
+
+    Hostname：管理主机名
+        ansible list1 -m hostname -a "name=app.dai.com"  更改一组的主机名
+        ansible 192.168.1.11 -m hostname -a "name=node3" 更改单个主机名
+            cat /etc/hostname,/etc/hosts
