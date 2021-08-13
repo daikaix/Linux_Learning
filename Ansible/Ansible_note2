@@ -119,3 +119,26 @@
             owner:  指定所属者
             mode:   设置权限
 
+6. Cron,Yum,Service 模块
+    cron:
+        支持时间：minute,hour,day,month,weekday
+        ansible list1 -m cron -a 'minute=* weekday=2,4,6 job="/usr/bin/wall FBI warning!" name=Warn'
+        创建任务
+        ansible list1 -m cron -a 'state=absent name=Warn'
+        删除任务
+        ansible list1 -m cron -a 'minute=*/10 job='/usr/sbin/ntpdate 172.30.0.100" name=synctime disabled=yes'
+        注释任务,不在生效
+
+    Yum:
+        ansible list1 -m yum -a 'list=httpd'  查看程序列表
+        ansible list1 -m yum -a 'list=installed'
+
+        ansible list1 -m yum -a 'name=httpd,redis state=present' 安装
+        ansible list1 -m yum -a 'name=httpd state=absent'  删除
+        可以同时安装多个程序包
+
+    Service：管理服务
+        ansible list1 -m service -a 'name=httpd state=stopped'  停止服务
+        ansible list1 -m service -a 'name=httpd state=started enabled=yes' 启动服务,并设为开机自启
+        ansible list1 -m service -a 'name=httpd state=reloaded'  重新加载
+        ansible list1 -m service -a 'name=httpd state=restarted' 重启服务
