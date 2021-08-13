@@ -142,3 +142,26 @@
         ansible list1 -m service -a 'name=httpd state=started enabled=yes' 启动服务,并设为开机自启
         ansible list1 -m service -a 'name=httpd state=reloaded'  重新加载
         ansible list1 -m service -a 'name=httpd state=restarted' 重启服务
+
+7. User 管理用户
+    home   指定家目录路径
+    system 指定系统账号
+    group  指定组
+    remove 清除账户
+    shell  指定shell类型
+    comment 描述
+    name 用户名
+    uid 端口号
+
+
+    ansible list1 -m user -a 'name=user1 comment="test user" uid=2048 home=/app/user1 group=root'
+    ansible list1 -m user -a 'name=sysuser1 system=yes home=/app/sysuser1'
+    ansible list1 -m user -a 'name=user1 state=absent remove=yes'  清空用户所有数据
+    ansible list1 -m user -a 'name=app uid=88 system=yes home=/app groups=root shell=/sbin/nologin password="$1$zfVojmPy$ZILcvxnXljvTI2PhP2Iqv1"'  创建用户
+    ansible list1 -m user -a 'name=app state=absent'  不会删除家目录
+    ansible list1 -m user -a 'name=nginx shell=/sbin/nologin system=yes home=/var/nginx uid=80 group=root comment="nginx"'
+
+    删除用户及家目录等数据
+        Group：管理组
+            ansible srv -m group -a "name=testgroup system=yes"   创建组
+            ansible srv -m group -a "name=testgroup state=absent" 删除组
