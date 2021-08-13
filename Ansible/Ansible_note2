@@ -86,3 +86,36 @@
         ansible list1 -m hostname -a "name=app.dai.com"  更改一组的主机名
         ansible 192.168.1.11 -m hostname -a "name=node3" 更改单个主机名
             cat /etc/hostname,/etc/hosts
+
+5. Unarchive,Archive 模块
+    ansible-doc -s unarchive
+    unarchive：解包解压缩，有两种用法：
+        1、将ansible主机上的压缩包传到远程主机后解压缩至特定目录，设置copy=yes.
+        2、将远程主机上的某个压缩包解压缩到指定路径下，设置copy=no
+
+        常见参数：
+            copy：默认为yes，当copy=yes，拷贝的文件是从ansible主机复制到远程主机上，
+                  如果设置为copy=no，会在远程主机上寻找src源文件
+            src： 源路径，可以是ansible主机上的路径，也可以是远程主机上的路径，
+                  如果是远程主机上的路径，则需要设置copy=no
+            dest：远程主机上的目标路径
+            mode：设置解压缩后的文件权限
+
+        示例：
+            ansible list1 -m unarchive -a 'src=/root/root.tar.gz dest=/root/MyCode copy=yes'
+              #默认copy为yes ,将本机目录文件解压到目标主机对应目录下
+            ansible list1 -m unarchive -a 'src=/tmp/foo.zip dest=/data copy=no mode=0777'
+              # 解压被管理主机的foo.zip到data目录下, 并设置权限777
+            ansible list1 -m unarchive -a 'src=https://example.com/example.zip dest=/data copy=no'
+        注意: 1. 查看是否安装了tar和zip命令,bzip2,unzip
+             2. 查看文件夹的位置必须使用绝对路径
+
+    Archive：打包压缩
+        ansible list1 -m archive -a 'path=/etc/sysconfig dest=/data/sysconfig.zip format=zip owner=dai mode='755''
+        将远程主机目录打包
+            path:   指定路径
+            dest:   指定目标文件
+            format: 指定打包格式 gz,zip,bz2
+            owner:  指定所属者
+            mode:   设置权限
+
