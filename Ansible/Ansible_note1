@@ -43,3 +43,37 @@
     Ansible主要操作对象
        HOSTS主机
        NETWORKING网络设备
+
+4. 安装Ansible
+    1. 安装配置1台服务机，3台客户机
+        重复创建四台机器：
+            下载centos_mini, 创建虚拟机，配置存储盘片，语言，磁盘分区，begin install
+            root admin
+        为4台机器配置不同的静态的IP地址，且可以访问外网
+            onBOOT=yes, systemctl restart network
+            修改虚拟机网络连接方式为桥接方式 ip addr -> ip地址
+            通过终端连接虚拟机
+        配置机器yum源：
+            cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+            curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+            yum clean all # 清除系统所有的yum缓存
+            yum makecache # 生成yum缓存
+            安装vim,net-tools,nmtui
+        nmtui配置静态IP:
+            手动模式，IP地址 192.168.1.8/24
+                          192.168.1.7/24
+                          192.168.1.11/24
+                    Server: 192.168.1.9/24  Dai ~/.ssh/config
+
+            以及GateWay和DNS Server
+
+    2. Server机安装Ansible
+        配置epel国内源：
+            yum install epel-release  EPEL源，额外的软件包
+            wget -O /etc/yum.repos.d/epel-7.repo http://mirrors.aliyun.com/repo/epel-7.repo    # 下载阿里开源镜像的epel源文件
+            yum clean all # 清除系统所有的yum缓存
+            yum makecache # 生成yum缓存
+        安装ansible:
+            yum install ansible
+        确认安装：
+            ansible --version
