@@ -438,3 +438,33 @@
         添加： /dev/sdb2 swap swap defaults 0 0
 
 
+==14. 磁盘容量配额
+    多用户多任务的操作系统，磁盘的大小是有限的
+        1. 使用磁盘容量配额来限制某个用户或者某个用户组
+        2. 针对特定文件夹使用最大硬盘空间或者最大文件个数
+
+    quota命令集
+        软限制：提示用户，在限定的额度继续使用
+        硬限制：提示用户，强制终止
+
+    开启quota支持，vim /etc/fstab, UUID后面添加：defaults,uquota
+        mount | grep boot
+        chmod -Rf o+w /boot
+        ls -dl /boot/
+
+        quota查看发现root未设置数据
+
+    xfs_quota:
+        -x 专家模式 -c 以参数的形式设置要执行的命令
+        bsoft 软限制文件大小 ihard 硬限制文件数目
+        xfs_quota -x -c 'limit bsoft=4m bhard=7m isoft=5 ihard=9 dai' /boot
+        xfs_quota -x -c report /boot
+
+    切换到dai用户
+        dd if=/dev/zero of=/boot/dai bs=6M count=1 复制成功
+        dd if=/dev/zero of=/boot/dai bs=8M count=1 复制失败
+
+    edquota:
+        编辑修改quota配额
+        edquota -u dai
+        vim 进行修改即可
