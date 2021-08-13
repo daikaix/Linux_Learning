@@ -20,3 +20,26 @@
     7. 可使用任何编程语言写模块
     缺点：
         只能应对几百台主机的情况，对于大型环境一般使用专门的Saltstack
+
+3. Ansible的架构
+    首先需要添加主机清单
+    通过Modules 执行命令
+    通过PlayBook自动化执行
+
+    Ansible由INVENTORY、API、MODULES、PLUGINS所组成，是ansible核心执行工具。
+        INVENTORY：ansible管理主机的清单/etc/ansible/hosts
+        MODULES：命令的执行模块，多数为内置核心模块
+        PLUGINS：模块功能的补充
+        API：第三方程序调用的编程接口
+
+    ansible实现管理的主要方式：
+        Ad-Hoc：直接使用ansible命令，用于临时命令使用场景。
+        Ansible-playbook：长期规划好的，大型项目的场景。
+
+    Ansible-playbook（剧本）执行过程
+        将已有编排好的任务集写入Ansible-Playbook
+        通过ansible-playbook命令分拆任务集至逐条ansible命令，按预定规则逐条执行
+
+    Ansible主要操作对象
+       HOSTS主机
+       NETWORKING网络设备
