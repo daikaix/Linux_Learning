@@ -163,3 +163,15 @@
     host_key_checking = False               # 检查对应服务器的host_key，建议取消注释
     log_path=/var/log/ansible.log           # 日志文件,建议取消注释
     module_name   = command                 # 默认模块
+
+8. ansible-doc  ansible命令帮助文档
+    man ansible
+    ansible-doc: 显示模块帮助
+        ansible-doc [options] [module...]
+            -a            显示所有模块的文档
+            -l, --list    列出可用模块
+            -s, --snippet 显示指定模块的playbook片段(简化版,便于查找语法)
+        示例：
+            ansible-doc -l      列出所有模块,3000多个
+            ansible-doc ping    查看指定模块帮助用法
+            ansible-doc -s ping 查看指定模块帮助用法
