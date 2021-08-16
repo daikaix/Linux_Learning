@@ -1,0 +1,29 @@
+- hosts: all
+  remote_user: root
+
+  tasks:
+    - name: add group nginx
+      group: name=nginx state=present
+    - name: add user nginx
+      user: name=nginx state=present group=nginx
+    - name: Install epel
+      yum: name=epel-release state=present
+    - name: 配置国内源
+      copy: src=/etc/yum.repos.d/epel-7.repo dest=/etc/yum.repos.d/ backup=yes
+    - name: 配置国内源
+      shell: yum clean all
+    - name: 配置国内源
+      shell: yum makecache
+
+    - name: Install Nginx
+      yum: name=nginx state=present
+    - name: 配置防火墙
+      firewalld: port=80/tcp zone=public permanent=yes state=enabled
+    - name: 重置防火墙
+      shell: firewall-cmd --reload
+    - name: 关闭httpd
+      service: name=httpd state=stopped
+    - name: 将html页面拷贝, /usr/share/nginx/html/index.html
+      shell: echo "welcome to Nginx" > /usr/share/nginx/html/index.html
+    - name: Start Nginx
+      service: name=nginx state=started enabled=yes

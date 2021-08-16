@@ -1,0 +1,10 @@
+示例：sysuser.yml
+---
+- hosts: all
+  remote_user: root
+
+  tasks:
+    - name: create mysql user
+      user: name=mysql system=yes uid=36
+    - name: create a group
+      group: name=httpd system=yes

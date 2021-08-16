@@ -1,0 +1,10 @@
+---
+- hosts: list1:list2
+  remote_user: root
+  tasks:
+    - name: install httpd
+      yum: name=httpd state=present
+    - name: 配置文件复制
+      copy: src=/etc/httpd/conf/httpd.conf dest=/etc/httpd/conf/ backup=yes
+    - name: start httpd
+      service: name=httpd state=started enabled=yes
