@@ -135,3 +135,24 @@
           - name: run this command and ignore the result
             shell: /usr/bin/somecommand
             ignore_errors: True  忽略错误
+
+8. 运行PlayBook脚本
+    将playbook保存为yml文件
+
+    运行playbook的方式
+        ansible-playbook <filename.yml> ... [options]
+
+    常见选项
+        --check -C       只检测可能会发生的改变，但不真正执行操作
+                         (只检查语法,如果执行过程中出现问题,-C无法检测出来)
+                         (执行playbook生成的文件不存在,后面的程序如果依赖这些文件,也会导致检测失败)
+        --list-hosts     列出运行任务的主机
+        --list-tags      列出tag  (列出标签)
+        --list-tasks     列出task (列出任务)
+        --limit 主机列表 只针对主机列表中的主机执行
+        -v -vv -vvv      显示过程
+
+    示例
+        ansible-playbook hello.yml --check 只检测
+        ansible-playbook hello.yml --list-hosts  显示运行任务的主机
+        ansible-playbook hello.yml --limit websrvs  限制主机
