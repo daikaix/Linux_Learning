@@ -12,3 +12,23 @@
 2. ansible-pull
     推送命令至远程，效率无限提升，对运维要求较高
 
+3. ansible-playbook  可以引用按照标准的yml语言写的脚本
+    执行playbook
+    示例：ansible-playbook hello.yml
+        vim hello.yml
+        #hello world yml file
+        - hosts: list1
+          remote_user: root
+          tasks:
+            - name: hello world
+              command: /usr/bin/wall hello world
+
+4. ansible-vault  (了解)
+    功能：管理加密解密yml文件
+        ansible-vault [create|decrypt|edit|encrypt|rekey|view]
+        ansible-vault encrypt hello.yml 加密  -> 123456
+        ansible-vault decrypt hello.yml 解密
+        ansible-vault view hello.yml    查看  -> 只看，不解密
+        ansible-vault edit hello.yml    编辑加密文件
+        ansible-vault rekey hello.yml   修改口令
+        ansible-vault create new.yml    创建新文件
