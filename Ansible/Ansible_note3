@@ -1,0 +1,14 @@
+1. ansible-galaxy  # 银河,下载对应的roles
+    连接:
+        https://galaxy.ansible.com -> search 查看信息
+    下载：
+        ansible-galaxy collection install nginxinc.nginx_core
+        下载位置在： /root/.ansible/roles/nginxinc.nginx_core
+        一般下载不了, 可以在网站上直接下载
+    删除：
+        remove
+    roles文件目录：nginx, nginx_app_protect
+
+2. ansible-pull
+    推送命令至远程，效率无限提升，对运维要求较高
+
