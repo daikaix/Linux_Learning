@@ -174,3 +174,11 @@
     例如：
         配置文件发生更改，需要重启httpd服务，想要在原本的安装PlayBook增量修改
         直接添加 notify: restart httpd
+
+10. tags元素
+    tags: 添加标签
+    可以指定某一个任务添加一个标签,添加标签以后,想执行某个动作可以做出挑选来执行
+    多个动作可以使用同一个标签
+
+    直接在tasks之中添加tags，通过命令指定执行需要的标签
+        ansible-playbook -t install,conf
