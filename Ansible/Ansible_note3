@@ -32,3 +32,20 @@
         ansible-vault edit hello.yml    编辑加密文件
         ansible-vault rekey hello.yml   修改口令
         ansible-vault create new.yml    创建新文件
+
+5. Ansible-console：可交互执行命令，支持tab
+
+    root@all (3)[f:5]$
+    执行用户@当前操作的主机组 (当前组的主机数量)[f:并发数]$
+
+    配置修改：
+        设置并发数：forks n   例如： forks 10
+        切换组：cd 主机组 例如： cd web
+        列出当前组主机列表： list
+        列出所有的内置命令： ?或help
+    示例：
+        root@all (2)[f:5]$ list
+        root@all (2)[f:5]$ cd appsrvs
+        root@appsrvs (2)[f:5]$ list
+        root@appsrvs (2)[f:5]$ yum name=httpd state=present
+        root@appsrvs (2)[f:5]$ service name=httpd state=started
