@@ -182,3 +182,37 @@
 
     直接在tasks之中添加tags，通过命令指定执行需要的标签
         ansible-playbook -t install,conf
+
+11. PlayBook 变量
+    变量命名:
+        变量名仅能由字母、数字和下划线组成，且只能以字母开头
+
+    变量定义：key=value
+        示例：http_port=80
+
+    变量调用方式：
+        通过{{ variable_name }} 调用变量，且变量名前后必须有空格
+
+    变量获取：
+        1. ansible setup facts 远程主机的所有变量都可直接调用 (系统自带变量)
+           This module is automatically called by playbooks to gather useful variables about remote
+           hosts that can be used in playbooks
+           setup模块可以实现系统中很多系统信息的显示
+                    可以返回每个主机的系统信息包括:版本、主机名、cpu、内存
+           ansible all -m setup -a 'filter="ansible_nodename"'     查询主机名
+           ansible all -m setup -a 'filter="ansible_fqdn"'     查询主机名
+           ansible all -m setup -a 'filter="ansible_memtotal_mb"'  查询主机内存大小
+           ansible all -m setup -a 'filter="ansible_distribution_major_version"'  查询系统版本
+           ansible all -m setup -a 'filter="ansible_processor_vcpus"' 查询主机cpu个数
+
+        2. 通过命令行指定变量，优先级最高
+           ansible-playbook –e varname=value
+    实例1：
+        必须在playbook中使用变量，因为模式使用了setup模块
+        ansible-playbook var.yml
+    实例2：
+        在命令中指定变量
+        ansible-playbook –e pkname=httpd var.yml
+    实例3：
+        在命令中指定多个变量
+        ansible-playbook -e "username=user2 groupname=group2” var2.yml

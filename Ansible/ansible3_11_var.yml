@@ -1,0 +1,5 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: create log file
+      file: name=/var/log/ {{ ansible_fqdn }} state=touch
