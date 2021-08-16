@@ -1,0 +1,19 @@
+cat vars.yml
+var1: httpd
+var2: nginx
+
+cat var.yml
+- hosts: web
+  remote_user: root
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: create httpd log
+      file: name=/app/{{ var1 }}.log state=touch
+    - name: create nginx log
+      file: name=/app/{{ var2 }}.log state=touch
+
+  hostname app_81.magedu.com  hostname 不支持"_",认为"_"是非法字符
+  hostnamectl set-hostname app_80.magedu.com  可以更改主机名
+
+

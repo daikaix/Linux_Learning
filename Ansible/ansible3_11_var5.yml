@@ -1,0 +1,13 @@
+- hosts: websrvs
+  remote_user: root
+  vars:
+    - username: user1
+    - groupname: group1
+  tasks:
+    - name: create group
+      group: name={{ groupname }} state=present
+    - name: create user
+      user: name={{ username }} state=present
+
+  ansible-playbook var.yml
+  ansible-playbook -e "username=user2 groupname=group2” var2.yml
