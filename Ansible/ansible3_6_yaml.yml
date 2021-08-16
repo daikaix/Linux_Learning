@@ -1,0 +1,40 @@
+实例：
+    List：列表，其所有元素均使用“-”打头
+          列表代表同一类型的元素
+    示例：
+    # A list of tasty fruits
+    - Apple
+    - Orange
+    - Strawberry
+    - Mango
+
+    Dictionary：字典，通常由多个key与value构成 键值对
+    示例：
+    ---
+    # An employee record
+    name: Example Developer
+    job: Developer
+    skill: Elite
+
+    也可以将key:value放置于{}中进行表示，用,分隔多个key:value
+    示例：
+    ---
+    # An employee record
+    {name: Example Developer, job: Developer, skill: Elite}  有空格
+
+    ---
+    name1: John Smith
+    age: 41
+    gender: Male
+    spouse:
+        name: Jane Smith
+        age: 37
+        gender: Female
+    children:
+        - name: Jimmy Smith
+          age: 17
+          gender: Male
+        - name: Jenny Smith
+          age: 13
+          gender: Female
+

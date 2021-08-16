@@ -49,3 +49,20 @@
         root@appsrvs (2)[f:5]$ list
         root@appsrvs (2)[f:5]$ yum name=httpd state=present
         root@appsrvs (2)[f:5]$ service name=httpd state=started
+
+6. yaml语法
+    playbook是由一个或多个"play"组成的列表，是一个动作，要由多个动作组成角色role
+
+    yaml语言编写playbook,语法格式
+        1. 在单一档案中，可用连续三个连字号(——)区分多个档案。
+           另外，还有选择性的连续三个点号( ... )用来表示档案结尾
+        2. 次行开始正常写Playbook的内容，一般建议写明该Playbook的功能
+        3. 使用#号注释代码
+        4. 缩进必须是统一的，不能空格和tab混用
+        5. 缩进的级别也必须是一致的，同样的缩进代表同样的级别，程序判别配置的级别是通过缩进结合换行来实现的
+        6. YAML文件内容是区别大小写的，k/v的值均需大小写敏感
+        7. 多个k/v可同行写也可换行写，同行使用:分隔
+        8. v可是个字符串，也可是另一个列表[]
+        9. 一个完整的代码块功能需最少元素需包括 name 和 task
+        10.一个name只能包括一个task
+        11.YAML文件扩展名通常为yml或yaml
