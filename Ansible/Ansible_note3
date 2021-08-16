@@ -66,3 +66,72 @@
         9. 一个完整的代码块功能需最少元素需包括 name 和 task
         10.一个name只能包括一个task
         11.YAML文件扩展名通常为yml或yaml
+
+7. PlayBook核心元素
+    Hosts 执行的远程主机列表
+    Tasks 任务集
+    Variables 内置变量或者自定义变量，在playbooks中调用
+    Templates 模板文件，可以替换模板文件中的一些变量实现简单逻辑的文件
+    Handlers Notify  特定条件触发的操作
+    tags 指定某条任务执行，可以跳过已经确定执行了的指令
+
+    Hosts：
+        playbook中的每一个play的目的都是为了让特定主机以某个指定的用户身份执行任务。
+        hosts用于指定要执行指定任务的主机，须事先定义在主机清单中
+
+        形式：与ansible指令类似
+            Websrvs:&dbsrvs
+            192.168.1.*
+        示例: - hosts: websrvs:dbsrvs
+
+    remote_user:
+        可用于Host和task中。
+        也可以通过指定其通过sudo的方式在远程主机上执行任务，其可用于play全局或某任务；
+        此外，甚至可以在sudo时使用sudo_user指定sudo时切换的用户
+        - hosts: websrvs
+          remote_user: root   (可省略,默认为root)  以root身份连接
+          tasks:    指定任务
+            - name: test connection
+              ping:
+              remote_user: magedu
+              sudo: yes           默认sudo为root
+              sudo_user:wang      sudo为wang
+
+    gather_facts: no 表示在ansible运行时，不收集详细信息
+
+    task列表和action
+        多个任务,一个模块一个模块执行
+        1. 主体部分是task list,即在所有主机上完成第一个任务后，再开始第二个任务
+
+        2. task的目的是使用指定的参数执行模块，而在模块参数中可以使用变量。
+
+        3. 每个task都应该有其name，用于playbook的执行结果输出。
+
+        tasks：任务列表
+        两种格式：
+            (1) action: module arguments
+            (2) module: arguments 建议使用  模块: 参数
+            注意：shell和command模块后面跟命令，而非key=value
+
+        某任务的状态在运行后为changed时，可通过"notify"通知给相应的handlers
+        任务可以通过"tags"打标签，可在ansible-playbook命令上使用-t指定进行调用
+        示例：
+        - hosts: websrvs
+          remote_user: root   (可省略,默认为root)  以root身份连接
+          tasks:    指定任务
+            - name: install httpd
+              yum: name=httpd state=present
+            - name: start httpd
+              service: name=httpd state=start enable=yes
+
+        如果命令或脚本的退出码不为零，可以使用如下方式替代
+        tasks:
+          - name: run this command and ignore the result
+            shell: /usr/bin/somecommand || /bin/true
+            转错为正  如果命令失败则执行 true
+
+        或者使用ignore_errors来忽略错误信息
+        tasks:
+          - name: run this command and ignore the result
+            shell: /usr/bin/somecommand
+            ignore_errors: True  忽略错误
