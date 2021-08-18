@@ -1,0 +1,50 @@
+1. git特性	Git 是一个免费的、开源的分布式版本控制系统，可以快速高效地处理从小型到大型的各种项目。
+	git具有版本控制的特性，版本控制是一种记录文件内容变化，用来查看历史版本，方便版本切换
+	通过git过渡到团队协作
+
+	集中式版本控制与分布式区别：
+		集中管理服务器，
+		每个客户端都具有完整的版本，可以断网开发
+
+	git工作机制，git add,git commit , 临时存储和历史版本
+
+	代码托管中心：GitLab（局域网），互联网GitHub,Gitee
+
+2. git安装和基础配置
+	安装：
+		MAC -> HOMEBREW安装：brew install git
+		LINUX -> YUM安装： yum -y install git
+		git --version
+	配置：
+	    1. 设置用户签名：
+		git config --global user.name daikaix
+		git config --global user.email 996327890@qq.com
+		注意：
+			Git 首次安装必须设置一下用户签名，否则无法提交代码
+			信息存放在~/.gitconfig
+			此处设置用户签名和将来登录 GitHub（或其他代码托管中心）的账号没有任何关系
+
+	    2. 初始化本地库
+		cd /xx/xx  ( 此处为你代码的存放位置 )
+		git init -> 生成了.git目录
+
+		3. 查看本地库状态
+		git status ( 分支，提交记录，和待提交的信息 )
+
+		4. 添加,删除缓存区
+		git add filename -> ( 有点类似于IDEA的默认add，自动变绿 )
+		git rm --cached filename -> ( 有点类似于IDEA回退，导致文件变红，无法追踪 )
+		添加后的git status: Changes to be committed
+		删除后的git status: Untracked files
+
+		5. 提交本地库
+		git commit -m "log message" filename -> ( 有点类似于 IDEA 的commit提交，在下面写提交的简要概述 )
+			不填表示全部提交
+
+		6. 查看提交记录
+		git reflog  查看简短日志
+			b0006bc (HEAD -> master) HEAD@{0}: commit (initial): first commit
+		git log  查看详细日志，包括用户名，邮箱，很长的版本号
+
+            git log --pretty=oneline,只显示版本号和提交的备注信息
+
