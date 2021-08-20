@@ -1,0 +1,29 @@
+注意：以后填写Comment时，一定要在第一行写上  专题：标题
+
+1. GitLab安装
+    CnetOS虚拟机 yum -y install GitLab
+    rpm包安装：
+        vim gitlab-install.sh
+        chmod +x gitlab-install.sh
+        ./gitlab-install.sh
+        sudo rpm -ivh /opt/module/gitlab-ce-13.10.2-ce.0.el7.x86_64.rpm
+
+        sudo yum install -y curl policycoreutils-python openssh-server cronie
+
+        sudo lokkit -s http -s ssh
+
+        sudo yum install -y postfix
+
+        sudo service postfix start
+
+        sudo chkconfig postfix on
+
+        curl https://packages.gitlab.com/install/repositories/gitlab/gitlabce/script.rpm.sh | sudo bash
+
+        sudo EXTERNAL_URL="http://gitlab.example.com" yum -y install gitlabce
+
+    初始化GitLab,以及启动GitLab服务
+        1. gitlab-ctl reconfigure
+        2. gitlab-ctl start
+
+    访问该主机的ip地址，即可登录GitLab
