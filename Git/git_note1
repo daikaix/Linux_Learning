@@ -120,3 +120,20 @@
 		git clone 远程库地址		从远程库克隆到本地(SSH,HTTP)
 			进入克隆的项目，使用git remote -v 查看别名，自动起名为origin
 
+    配置SSH免密登录：
+        生成公钥，私钥对：ssh-keygen -t rsa -C 邮箱, -C表示注释信息
+        选择秘钥的生成位置，默认为~/.ssh/id_rsa
+        将公钥放置在GitHub中即可
+
+    总体的思路：
+        1. 安装git, 配置git config, 设置用户名，邮箱
+        2. 配置git ignore
+        3. 配置git SSH免密登录
+        4. 创建一个code文件夹，使用git init初始化
+        5. 在github创建一个repository
+        6. 在code中使用git clone克隆该repository
+        7. 使用git remote -v 查看，默认是origin别名，可以设置自己的名称
+        8. 用IDEA打开该目录,使用IDEA提供的git add,git rm,git commit
+           git checkout,git branch
+           (IDEA也可以自己创建仓库，push,pull,clone)
+        9. git push,git pull 推送远程
