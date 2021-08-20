@@ -216,3 +216,18 @@
     IDEA 克隆项目到本地
         1. Get from Version Control，Git,URL
         2. 菜单栏VCS->Get from Version Control
+
+8. 码云
+    1. 账号注册，新建仓库，导入已有的仓库
+
+    2. IDEA下载Gitee插件,并登录自己的账号
+        可以通过VCS 分享自己的代码
+    3. 自己定义远程仓库的连接
+        git remote add gitee xxx
+        现在可以通过 git push gitee master来推送自己的更新
+
+        也可以通过git -> repository -> push 选择自己需要的仓库
+
+    4. 如何应用gitee协助自己在公司的工作
+        git log > ~/log.txt  放置到 语雀上
+        在本地搜索需要的log对应的提交记录，在Gitee上查看即可
