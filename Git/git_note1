@@ -1,0 +1,93 @@
+1. git特性	Git 是一个免费的、开源的分布式版本控制系统，可以快速高效地处理从小型到大型的各种项目。
+	git具有版本控制的特性，版本控制是一种记录文件内容变化，用来查看历史版本，方便版本切换
+	通过git过渡到团队协作
+
+	集中式版本控制与分布式区别：
+		集中管理服务器，
+		每个客户端都具有完整的版本，可以断网开发
+
+	git工作机制，git add,git commit , 临时存储和历史版本
+
+	代码托管中心：GitLab（局域网），互联网GitHub,Gitee
+
+2. git安装和基础配置
+	安装：
+		MAC -> HOMEBREW安装：brew install git
+		LINUX -> YUM安装： yum -y install git
+		git --version
+	配置：
+	    1. 设置用户签名：
+		git config --global user.name daikaix
+		git config --global user.email 996327890@qq.com
+		注意：
+			Git 首次安装必须设置一下用户签名，否则无法提交代码
+			信息存放在~/.gitconfig
+			此处设置用户签名和将来登录 GitHub（或其他代码托管中心）的账号没有任何关系
+
+	    2. 初始化本地库
+		cd /xx/xx  ( 此处为你代码的存放位置 )
+		git init -> 生成了.git目录
+
+		3. 查看本地库状态
+		git status ( 分支，提交记录，和待提交的信息 )
+
+		4. 添加,删除缓存区
+		git add filename -> ( 有点类似于IDEA的默认add，自动变绿 )
+		git rm --cached filename -> ( 有点类似于IDEA回退，导致文件变红，无法追踪 )
+		添加后的git status: Changes to be committed
+		删除后的git status: Untracked files
+
+		5. 提交本地库
+		git commit -m "log message" filename -> ( 有点类似于 IDEA 的commit提交，在下面写提交的简要概述 )
+			不填表示全部提交
+
+		6. 查看提交记录
+		git reflog  查看简短日志
+			b0006bc (HEAD -> master) HEAD@{0}: commit (initial): first commit
+		git log  查看详细日志，包括用户名，邮箱，很长的版本号
+
+            git log --pretty=oneline,只显示版本号和提交的备注信息
+
+3. 版本穿梭
+    git reset --hard 版本号  ( 类似于IDEA的 Reset Current Branch to Here )
+        还有mixed,softed 分别表示强制关闭，文件不更改，改变也不撤销
+
+    本质：
+        每次提交都会有一个版本，会有一个master指针，会指向最新的版本
+        穿越回去，只需要调整指针的位置即可
+
+4. 分支
+    在版本控制过程中，同时推进多个任务，为每个任务单独创建一个分支，不影响其他人的使用
+    hot-fix
+    master          o -> o -> o
+    feature-blue    o ->
+
+    指令：
+        git branch -v	        查看分支
+        git branch 分支名        创建分支(在当前分支的基础上)
+        git checkout 分支名      切换分支
+        git merge 分支名	        把指定的分支合并到当前分支上
+        git branch -d 分支名	    删除分支
+
+    本质：
+        多个不同的指针，指针对应的文件在git branch, 即当前分支上获取
+        可以进行合并，一定要多个任务同时进行，才需要通过git merge合并
+
+    正常合并：
+        git merge 分支名，合并的分支不会消失，只是修改会被添加到主分支上
+    冲突合并：
+        合并分支时，发现合并时两个分支修改了同一个部分的代码，需要人为进行修改
+        实例：
+			master分支修改了file的一行，git add,commit
+			lsf分支修改了file的同一行，git add commit
+			git checkout master
+			git merge lsf -> 此时会出现分支的合并冲突异常
+				Automatic merge failed; fix conflicts and then commit the result.
+				git status ( you have unmerged paths )
+				cat file -> 看到不同之处
+
+		解决冲突操作：
+			直接vim修改file文件，将特殊字符都删除，保存
+			git add file -> git commit ( 把file提交上去，不能带文件名 )
+
+
