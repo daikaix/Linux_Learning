@@ -206,4 +206,13 @@
             在分支处，选择Merge into Current
             产生冲突后，选择merge,出现三个文件，修改后commit提交即可
 
+    设置GitHub 账号
+        使用token登录：Settings,Develop Settings,Personal
+        权限全选 -> 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
 
+    分享项目到GitHub
+        VCS -> Share Project on GitHub
+
+    IDEA 克隆项目到本地
+        1. Get from Version Control，Git,URL
+        2. 菜单栏VCS->Get from Version Control
