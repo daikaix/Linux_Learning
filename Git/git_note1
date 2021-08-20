@@ -107,3 +107,16 @@
 			git remote add hellogit https://github.com/abc/HelloGit.git
 			会出现两个别名，fetch和push都以使用
 
+	推送本地库到远程库：
+		git push 远程库地址或其别名 分支名	推送到远程库
+			git push hellogit master
+
+	拉取远程库：
+		git pull 远程库地址或其别名 分支名
+			将远程仓库对于分支最新内容拉下来后与当前本地分支直接合并
+			相当于git fetch + git merge，这样可能会产生冲突，需要手动解决
+
+	克隆远程库：
+		git clone 远程库地址		从远程库克隆到本地(SSH,HTTP)
+			进入克隆的项目，使用git remote -v 查看别名，自动起名为origin
+
