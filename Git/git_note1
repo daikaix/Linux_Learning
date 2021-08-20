@@ -189,4 +189,21 @@
         IDEA配置Git程序
             preferences -> Git -> Git Path
 
+        IDEA创建Git,添加,提交
+            1. VCS -> Import into Version Control -> Create Git Repository
+                类似于git init，初始化git仓库
+            2. Git add  类似于git add操作，可以默认add
+            3. Git commit file  提交文件
+
+        IDEA切换版本：
+            Checkout Revision，切换到自己想要观察的版本
+
+        IDEA创建切换分支：
+            Git -> Repository -> Branches
+            右下角也有分支对应信息，可以看到当前分支，本地分支，远程分支
+
+        IDEA git分支合并
+            在分支处，选择Merge into Current
+            产生冲突后，选择merge,出现三个文件，修改后commit提交即可
+
 
