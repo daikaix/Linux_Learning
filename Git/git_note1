@@ -48,3 +48,46 @@
 
             git log --pretty=oneline,只显示版本号和提交的备注信息
 
+3. 版本穿梭
+    git reset --hard 版本号  ( 类似于IDEA的 Reset Current Branch to Here )
+        还有mixed,softed 分别表示强制关闭，文件不更改，改变也不撤销
+
+    本质：
+        每次提交都会有一个版本，会有一个master指针，会指向最新的版本
+        穿越回去，只需要调整指针的位置即可
+
+4. 分支
+    在版本控制过程中，同时推进多个任务，为每个任务单独创建一个分支，不影响其他人的使用
+    hot-fix
+    master          o -> o -> o
+    feature-blue    o ->
+
+    指令：
+        git branch -v	        查看分支
+        git branch 分支名        创建分支(在当前分支的基础上)
+        git checkout 分支名      切换分支
+        git merge 分支名	        把指定的分支合并到当前分支上
+        git branch -d 分支名	    删除分支
+
+    本质：
+        多个不同的指针，指针对应的文件在git branch, 即当前分支上获取
+        可以进行合并，一定要多个任务同时进行，才需要通过git merge合并
+
+    正常合并：
+        git merge 分支名，合并的分支不会消失，只是修改会被添加到主分支上
+    冲突合并：
+        合并分支时，发现合并时两个分支修改了同一个部分的代码，需要人为进行修改
+        实例：
+			master分支修改了file的一行，git add,commit
+			lsf分支修改了file的同一行，git add commit
+			git checkout master
+			git merge lsf -> 此时会出现分支的合并冲突异常
+				Automatic merge failed; fix conflicts and then commit the result.
+				git status ( you have unmerged paths )
+				cat file -> 看到不同之处
+
+		解决冲突操作：
+			直接vim修改file文件，将特殊字符都删除，保存
+			git add file -> git commit ( 把file提交上去，不能带文件名 )
+
+
