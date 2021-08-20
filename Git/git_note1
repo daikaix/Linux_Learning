@@ -150,3 +150,43 @@
             此时别的团队会在git requests中收到信息
             里面还可以进行即时会话交流
 
+    7. IDEA使用git
+        配置Git忽略文件
+            1. 放置在家目录下,生成.gitignore文件
+                # Compiled class file
+                *.class
+
+                # Log file
+                *.log
+
+                # BlueJ files
+                *.ctxt
+
+                # Mobile Tools for Java (J2ME)
+                .mtj.tmp/
+
+                # Package Files #
+                *.jar
+                *.war
+                *.nar
+                *.ear
+                *.zip
+                *.tar.gz
+                *.rar
+
+                # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+                hs_err_pid*
+                .classpath
+                .project
+                .settings
+                target
+                .idea
+                *.iml
+            2. 在.gitconfig 文件中引用忽略配置文件
+                [core]
+                    excludesfile = /Users/daikaixuan/.gitignore
+
+        IDEA配置Git程序
+            preferences -> Git -> Git Path
+
+
