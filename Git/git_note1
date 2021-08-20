@@ -137,3 +137,16 @@
            git checkout,git branch
            (IDEA也可以自己创建仓库，push,pull,clone)
         9. git push,git pull 推送远程
+
+    6. 团队协作
+        settings,Manager access,Invite a collaborator
+        填入合作者，将网页链接发送给合作者，合作者接受后，在自己的仓库中可以看到对应的仓库
+
+        跨团队协作：
+            在网页端进行fork
+                git add,git commit
+            在网页端Pull requests,
+                new pull requests,create requests
+            此时别的团队会在git requests中收到信息
+            里面还可以进行即时会话交流
+
