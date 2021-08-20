@@ -90,4 +90,20 @@
 			直接vim修改file文件，将特殊字符都删除，保存
 			git add file -> git commit ( 把file提交上去，不能带文件名 )
 
+5. 	远程代码库
+	团队内协作：内部通过pull,clone,push完成代码更新
+	跨团队协作：其他团队的远程库，本团队进行fork获取其远程库，clone到本地库，push进行更改
+			  开发完毕后，通过pull request发送给其他团队，其他团队审核后，进行merge即可
+
+	GitHub创建仓库：
+		1. 创建远程库  new repository
+		2. 写远程库的名称，需要与本地库保持一致，选择public和private库
+		3. 两种链接，SSH链接和HTTP链接
+
+	创建远程仓库别名：
+		在主分支相同文件夹下进行操作：
+		git remote -v					查看当前所有远程地址别名
+		git remote add 别名 远程地址		起别名(远程地址可以是HTTP后者SSH)
+			git remote add hellogit https://github.com/abc/HelloGit.git
+			会出现两个别名，fetch和push都以使用
 
